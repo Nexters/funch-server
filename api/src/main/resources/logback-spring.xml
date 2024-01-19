@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>[C] %d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}|%-4p|%t|%X{traceId}|%F:%L|%msg%n</pattern>
+        </layout>
+    </appender>
+
+    <root>
+        <appender-ref ref="stdout"/>
+    </root>
+
+</configuration>
