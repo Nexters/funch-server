@@ -1,0 +1,2 @@
+server:
+  port: -1 # Prevent the embedded Tomcat from opening a TCP/IP port.

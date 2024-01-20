@@ -1,1 +1,1 @@
-# moyamoya-server
+# funch-server
