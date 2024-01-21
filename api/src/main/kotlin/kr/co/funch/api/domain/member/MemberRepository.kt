@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono
 interface MemberRepository : ReactiveMongoRepository<Member, ObjectId>, MemberRepositoryCustom
 
 interface MemberRepositoryCustom {
-    suspend fun findMember(id: ObjectId): Mono<Member>
+    suspend fun findMemberById(id: ObjectId): Mono<Member>
 }
 
 @Repository
@@ -22,7 +22,7 @@ class MemberRepositoryCustomImpl(
     private val mongoOperations: ReactiveMongoOperations,
     private val ioDispatcher: CoroutineDispatcher,
 ) : MemberRepositoryCustom {
-    override suspend fun findMember(id: ObjectId): Mono<Member> =
+    override suspend fun findMemberById(id: ObjectId): Mono<Member> =
         withContext(ioDispatcher) {
             val criteria = Criteria()
             criteria

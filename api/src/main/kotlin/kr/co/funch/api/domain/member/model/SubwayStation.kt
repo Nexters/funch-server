@@ -1,12 +1,14 @@
 package kr.co.funch.api.domain.member.model
 
+import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
 data class SubwayStation(
     @Id
-    val id: String,
+    val id: ObjectId? = null,
+    val name: String,
     val lines: List<SubwayLine>,
     val location: Location,
 ) {
