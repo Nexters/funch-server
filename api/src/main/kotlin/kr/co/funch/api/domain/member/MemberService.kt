@@ -11,7 +11,26 @@ class MemberService(
     private val memberRepository: MemberRepository,
 ) {
     suspend fun findMember(id: String): Member {
-        return memberRepository.findMember(ObjectId(id))
-            .awaitFirstOrNull() ?: throw IllegalArgumentException()
+        return memberRepository.findMemberById(ObjectId(id))
+            ?: throw IllegalArgumentException("Member not found - id: $id")
+    }
+
+    suspend fun findMemberByDeviceNumber(deviceNumber: String): Member {
+        return memberRepository.findMemberByDeviceNumber(deviceNumber)
+            ?: throw IllegalArgumentException("Member not found - deviceNumber: $deviceNumber")
+    }
+
+    suspend fun createMember(
+        member: Member,
+        subwayStationIds: List<String>,
+    ): Member {
+        return try {
+            memberRepository.save(member)
+                .awaitFirstOrNull()
+                ?: throw IllegalArgumentException()
+            // TODO : exception handling for duplicate key
+        } catch (e: Exception) {
+            throw IllegalArgumentException("Member didn't saved - deviceNumber: ${member.deviceNumber}")
+        }
     }
 }
