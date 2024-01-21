@@ -12,6 +12,6 @@ class MemberService(
 ) {
     suspend fun findMember(id: String): Member {
         return memberRepository.findMember(ObjectId(id))
-            .awaitFirstOrNull() ?: throw IllegalArgumentException()
+            .awaitFirstOrNull() ?: throw IllegalArgumentException("Member not found - id: $id")
     }
 }
