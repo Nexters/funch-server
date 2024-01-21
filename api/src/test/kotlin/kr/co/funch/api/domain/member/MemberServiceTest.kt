@@ -9,7 +9,6 @@ import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
-import reactor.kotlin.core.publisher.toMono
 import java.time.LocalDate
 
 class MemberServiceTest : BehaviorSpec() {
@@ -33,7 +32,7 @@ class MemberServiceTest : BehaviorSpec() {
                     birthDate = LocalDate.now(),
                     age = 23,
                     constellation = Constellation.ARIES,
-                ).toMono()
+                )
 
             When("findMember") {
                 val member = sut.findMember("5f9f1b9b9d6b9e1b9d6b9e1b")

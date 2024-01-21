@@ -37,6 +37,10 @@ dependencies {
         exclude("org.mongodb", "mongo-java-driver")
     }
 
+    // swagger
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.3.0")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
+
     // test
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(module = "mockito-core")
