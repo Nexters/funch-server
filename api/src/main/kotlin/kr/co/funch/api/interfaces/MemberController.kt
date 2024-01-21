@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
@@ -28,14 +29,28 @@ class MemberController(
         )
     }
 
+    @GetMapping
+    suspend fun getMemberByDeviceNumber(
+        @RequestParam deviceNumber: String,
+    ): ApiResponse<MemberDto.MemberResponse> {
+        val member = memberService.findMemberByDeviceNumber(deviceNumber)
+
+        return ApiResponse(
+            status = "200",
+            message = "OK",
+            data = MemberDto.MemberResponse.of(member),
+        )
+    }
+
     @PostMapping
     suspend fun createMember(
         @RequestBody memberRequest: MemberDto.MemberCreateRequest,
     ): ApiResponse<MemberDto.MemberResponse> {
-        val member = memberService.createMember(
-            member = memberRequest.toDomain(),
-            subwayStationIds = memberRequest.subwayStations
-        )
+        val member =
+            memberService.createMember(
+                member = memberRequest.toDomain(),
+                subwayStationIds = memberRequest.subwayStations,
+            )
 
         return ApiResponse(
             status = "201",

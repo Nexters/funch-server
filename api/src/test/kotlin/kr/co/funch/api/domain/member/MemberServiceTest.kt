@@ -33,7 +33,7 @@ class MemberServiceTest : BehaviorSpec() {
                     birthDate = LocalDate.now(),
                     age = 23,
                     constellation = Constellation.ARIES,
-                ).toMono()
+                )
 
             When("findMember") {
                 val member = sut.findMember("5f9f1b9b9d6b9e1b9d6b9e1b")

@@ -23,5 +23,8 @@ data class Member(
     val deviceNumber: String,
 ) {
     val memberCode: String
-        get() = "${birthDate.year.toString().substring(2, 4)}${birthDate.monthValue}${birthDate.dayOfMonth}${id.toString().substring(0, 4)}"
+        get() = "${birthDate.year.toString().substring(
+            2,
+            4,
+        )}${birthDate.monthValue}${birthDate.dayOfMonth}${id.toString().substring(0, 4)}"
 }
