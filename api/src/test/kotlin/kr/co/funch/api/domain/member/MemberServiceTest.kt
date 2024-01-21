@@ -9,7 +9,6 @@ import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
-import reactor.kotlin.core.publisher.toMono
 import java.time.LocalDate
 
 class MemberServiceTest : BehaviorSpec() {
