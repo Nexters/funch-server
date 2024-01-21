@@ -14,4 +14,8 @@ data class MbtiChemistry(
         val referenceMbti: Mbti,
         val targetMbti: Mbti,
     )
+
+    fun isEqualMbti(): Boolean {
+        return id.referenceMbti == id.targetMbti
+    }
 }

@@ -14,4 +14,8 @@ data class ConstellationChemistry(
         val referenceConstellation: Constellation,
         val targetConstellation: Constellation,
     )
+
+    fun isEqualConstellation(): Boolean {
+        return id.referenceConstellation == id.targetConstellation
+    }
 }
