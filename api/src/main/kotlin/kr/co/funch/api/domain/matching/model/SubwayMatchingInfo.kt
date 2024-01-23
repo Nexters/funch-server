@@ -4,6 +4,7 @@ data class SubwayMatchingInfo(
     val string: String,
 ) {
     fun isEqualLine(): Boolean {
-        TODO("Not yet implemented")
+        // TODO("Not yet implemented")
+        return false
     }
 }
