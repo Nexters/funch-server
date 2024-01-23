@@ -15,13 +15,18 @@ class MemberMatchingController(
     private val memberMatchingService: MemberMatchingService,
 ) {
     @PostMapping
-    fun match(
+    suspend fun match(
         @RequestBody matchingDto: MemberMatchingDto.MatchingRequestDto,
     ): ApiResponseDto<MemberMatchingDto.MatchingResponseDto> {
+        val matchingInfo =
+            memberMatchingService.getMatchingInfo(matchingDto.requestMemberId, matchingDto.targetMemberCode)
         return ApiResponseDto(
             status = HttpStatus.OK.value().toString(),
             message = HttpStatus.OK.reasonPhrase,
-            data = null,
+            data = MemberMatchingDto.MatchingResponseDto(
+                ratio = matchingInfo.getMatchingRatio(),
+                items = matchingInfo.getMatcingItems()
+            ),
         )
     }
 }
