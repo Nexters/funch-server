@@ -4,8 +4,8 @@ data class MemberMatching(
     val mbtiChemistry: MbtiChemistry,
     val constellationChemistry: ConstellationChemistry,
     val jobMatching: Boolean,
-    val clubMatching: Boolean,
-    val subwayMatchingInfo: SubwayMatchingInfo
+    val matchingClubInfo: MatchingClubInfo,
+    val subwayMatchingInfo: SubwayMatchingInfo,
 ) {
     private var totalItem: Double = 0.0
     private var matchedItem: Double = 0.0
@@ -14,7 +14,7 @@ data class MemberMatching(
         addMatchedItemIf(mbtiChemistry.isEqualMbti())
         addMatchedItemIf(constellationChemistry.isEqualConstellation())
         addMatchedItemIf(jobMatching)
-        addMatchedItemIf(clubMatching)
+        addMatchedItemIf(matchingClubInfo.hasMatchingClub())
         addMatchedItemIf(subwayMatchingInfo.isEqualLine())
     }
 
