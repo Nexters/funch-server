@@ -1,6 +1,7 @@
 package kr.co.funch.api.domain.matching
 
 import kr.co.funch.api.domain.matching.model.ConstellationChemistry
+import kr.co.funch.api.domain.matching.model.MatchingClubInfo
 import kr.co.funch.api.domain.matching.model.MbtiChemistry
 import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.domain.matching.model.SubwayMatchingInfo
@@ -23,11 +24,21 @@ class MemberMatchingService(
         // TODO: 임시로 매칭 key로 device code 사용, 매칭 시 사용하는 코드 논의 후 변경
         val matchingTargetMember = memberService.findMemberByDeviceNumber(targetMemberCode)
 
-        val mbtiChemistry = findMbtiChemistry(requestMember.mbti, matchingTargetMember.mbti)
-        val constellationChemistry =
-            findConstellationChemistry(requestMember.constellation, matchingTargetMember.constellation)
-        val matchingClubInfo =
-            memberService.getMatchedClubOfMember(matchingTargetMember.id.toString(), requestMember.clubs)
+        // val mbtiChemistry = findMbtiChemistry(requestMember.mbti, matchingTargetMember.mbti)
+        // val constellationChemistry =
+        //     findConstellationChemistry(requestMember.constellation, matchingTargetMember.constellation)
+
+        val mbtiChemistry = MbtiChemistry(MbtiChemistry.MbtiChemistryId(Mbti.ISTJ, Mbti.ISTJ), message = "천생연분")
+        val constellationChemistry = ConstellationChemistry(
+            ConstellationChemistry.ConstellationChemistryId(
+                Constellation.CANCER,
+                Constellation.CAPRICORN
+            ), "최악"
+        )
+
+        // val matchingClubInfo =
+        //     memberService.getMatchedClubOfMember(matchingTargetMember.id.toString(), requestMember.clubs)
+        val matchingClubInfo = MatchingClubInfo.of(requestMember.clubs, matchingTargetMember.clubs)
 
         return MemberMatching(
             mbtiChemistry,

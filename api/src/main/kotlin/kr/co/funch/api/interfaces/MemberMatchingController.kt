@@ -1,6 +1,7 @@
 package kr.co.funch.api.interfaces
 
 import kr.co.funch.api.domain.matching.MemberMatchingService
+import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto
 import org.springframework.http.HttpStatus
@@ -15,13 +16,15 @@ class MemberMatchingController(
     private val memberMatchingService: MemberMatchingService,
 ) {
     @PostMapping
-    fun match(
+    suspend fun match(
         @RequestBody matchingDto: MemberMatchingDto.MatchingRequestDto,
-    ): ApiResponseDto<MemberMatchingDto.MatchingResponseDto> {
+    ): ApiResponseDto<MemberMatching> {
+        val matchingInfo =
+            memberMatchingService.getMatchingInfo(matchingDto.requestMemberId, matchingDto.targetMemberCode)
         return ApiResponseDto(
             status = HttpStatus.OK.value().toString(),
             message = HttpStatus.OK.reasonPhrase,
-            data = null,
+            data = matchingInfo,
         )
     }
 }
