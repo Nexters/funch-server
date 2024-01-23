@@ -1,6 +1,7 @@
 package kr.co.funch.api.domain.matching
 
 import kr.co.funch.api.domain.matching.model.ConstellationChemistry
+import kr.co.funch.api.domain.matching.model.MatchingClubInfo
 import kr.co.funch.api.domain.matching.model.MbtiChemistry
 import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.domain.matching.model.SubwayMatchingInfo
@@ -26,8 +27,7 @@ class MemberMatchingService(
         val mbtiChemistry = findMbtiChemistry(requestMember.mbti, matchingTargetMember.mbti)
         val constellationChemistry =
             findConstellationChemistry(requestMember.constellation, matchingTargetMember.constellation)
-        val matchingClubInfo =
-            memberService.getMatchedClubOfMember(matchingTargetMember.id.toString(), requestMember.clubs)
+        val matchingClubInfo = MatchingClubInfo.of(requestMember.clubs, matchingTargetMember.clubs)
 
         return MemberMatching(
             mbtiChemistry,
