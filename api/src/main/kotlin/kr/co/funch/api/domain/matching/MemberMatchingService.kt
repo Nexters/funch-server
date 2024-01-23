@@ -34,7 +34,7 @@ class MemberMatchingService(
             constellationChemistry,
             requestMember.jobGroup == matchingTargetMember.jobGroup,
             matchingClubInfo,
-            SubwayMatchingInfo("싱싱미역"),
+            SubwayMatchingInfo("싱싱미역"), // TODO: SubwayStation document로부터 불러와서 비교 후 MatcingInfo화
         )
     }
 
