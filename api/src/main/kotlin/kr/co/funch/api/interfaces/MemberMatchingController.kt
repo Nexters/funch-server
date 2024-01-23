@@ -1,6 +1,7 @@
 package kr.co.funch.api.interfaces
 
 import kr.co.funch.api.domain.matching.MemberMatchingService
+import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto
 import org.springframework.http.HttpStatus
@@ -17,17 +18,14 @@ class MemberMatchingController(
     @PostMapping
     suspend fun match(
         @RequestBody matchingDto: MemberMatchingDto.MatchingRequestDto,
-    ): ApiResponseDto<MemberMatchingDto.MatchingResponseDto> {
+    ): ApiResponseDto<MemberMatching> {
+        // TODO: response 포맷 확정 후 dto로 변경
         val matchingInfo =
             memberMatchingService.getMatchingInfo(matchingDto.requestMemberId, matchingDto.targetMemberCode)
         return ApiResponseDto(
             status = HttpStatus.OK.value().toString(),
             message = HttpStatus.OK.reasonPhrase,
-            data =
-                MemberMatchingDto.MatchingResponseDto(
-                    ratio = matchingInfo.getMatchingRatio(),
-                    items = matchingInfo.getMatcingItems(),
-                ),
+            data = matchingInfo
         )
     }
 }

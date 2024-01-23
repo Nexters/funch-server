@@ -19,30 +19,6 @@ data class MemberMatching(
         return matchedItem / totalItem
     }
 
-    fun getMatcingItems(): List<String> {
-        val matchingItems = mutableListOf<String>()
-        if (mbtiChemistry.isEqualMbti()) {
-            matchingItems.add("mbti")
-        }
-
-        if (constellationChemistry.isEqualConstellation()) {
-            matchingItems.add("constellation")
-        }
-
-        if (jobMatching) {
-            matchingItems.add("job")
-        }
-
-        if (matchingClubInfo.hasMatchingClub()) {
-            matchingItems.add("club")
-        }
-
-        if (subwayMatchingInfo.isEqualLine()) {
-            matchingItems.add("subway")
-        }
-        return matchingItems
-    }
-
     private fun addMatchedItemIf(condition: Boolean) {
         totalItem += 1.0
         if (condition) {
