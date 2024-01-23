@@ -23,10 +23,11 @@ class MemberMatchingController(
         return ApiResponseDto(
             status = HttpStatus.OK.value().toString(),
             message = HttpStatus.OK.reasonPhrase,
-            data = MemberMatchingDto.MatchingResponseDto(
-                ratio = matchingInfo.getMatchingRatio(),
-                items = matchingInfo.getMatcingItems()
-            ),
+            data =
+                MemberMatchingDto.MatchingResponseDto(
+                    ratio = matchingInfo.getMatchingRatio(),
+                    items = matchingInfo.getMatcingItems(),
+                ),
         )
     }
 }
