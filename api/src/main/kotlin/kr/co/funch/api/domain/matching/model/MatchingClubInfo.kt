@@ -12,7 +12,7 @@ data class MatchingClubInfo(
         ): MatchingClubInfo {
             val matchingClubs = mutableListOf<Club>()
             for (club in clubs) {
-                for (targetClub in clubs) {
+                for (targetClub in targetClubs) {
                     if (club == targetClub) {
                         matchingClubs.add(targetClub)
                     }
