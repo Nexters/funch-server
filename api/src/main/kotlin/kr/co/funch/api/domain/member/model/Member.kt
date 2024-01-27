@@ -27,4 +27,10 @@ data class Member(
             2,
             4,
         )}${birthDate.monthValue}${birthDate.dayOfMonth}${id.toString().substring(0, 4)}"
+
+    fun getMatchedClubs(member: Member): List<Club> {
+        val referenceClubs = this.clubs.toSet()
+        val targetClubs = member.clubs.toSet()
+        return referenceClubs.union(targetClubs.toSet()).toList()
+    }
 }
