@@ -15,15 +15,15 @@ data class MemberMatching(
     private var totalItem: Int = 0
     private var matchedItem: Int = 0
 
-    fun getChemistryInfos(): Set<ChemistryInfo> {
-        return setOf(
+    fun getChemistryInfos(): List<ChemistryInfo> {
+        return listOf(
             mbtiChemistry.chemistryInfo,
             constellationChemistry.chemistryInfo,
         )
     }
 
-    fun getRecommendInfos(): Set<RecommendInfo> {
-        val recommendInfos = mutableSetOf<RecommendInfo>()
+    fun getRecommendInfos(): List<RecommendInfo> {
+        val recommendInfos = mutableListOf<RecommendInfo>()
         if (mbtiChemistry.isEqualMbti()) {
             recommendInfos.add(RecommendInfo(targetMember.mbti.name))
         }
@@ -38,7 +38,13 @@ data class MemberMatching(
         matchingSubwayInfo
             .forEach { recommendInfos.add(RecommendInfo(it.name)) }
 
-        return recommendInfos.toSet()
+        return recommendInfos.toList()
+    }
+
+    fun getSubwayInfos(): List<SubwayInfo> {
+        return targetMember.subwayStations
+            .map { SubwayInfo.of(it) }
+            .toList()
     }
 
     fun calculateSimilarity(): Int {
