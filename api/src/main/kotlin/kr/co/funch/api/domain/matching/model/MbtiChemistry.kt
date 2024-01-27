@@ -14,7 +14,7 @@ data class MbtiChemistry(
         private val GOOD_MESSAGE = ChemistryMessage("To be determined.", "미정")
         private val BEST_MESSAGE = ChemistryMessage("찾았다, 내 소울메이트!", "미정")
 
-        private val CHEMISTRY_MAP = HashMap<Pair<Mbti, Mbti>, String>()
+        private val CHEMISTRY_MAP = HashMap<Pair<Mbti, Mbti>, ChemistryMessage>()
 
         init {
             // ESTJ
@@ -191,16 +191,26 @@ data class MbtiChemistry(
                     CHEMISTRY_MAP[Pair(it.key.second, it.key.first)] = it.value
                 }
         }
+
+        fun of(referenceMbti: Mbti, targetMbti: Mbti): MbtiChemistry {
+            return MbtiChemistry(
+                referenceMbti,
+                targetMbti,
+                getChemistryMessage(referenceMbti, targetMbti)
+            )
+        }
+
+        private fun getChemistryMessage(referenceMbti: Mbti, targetMbti: Mbti): ChemistryMessage {
+            return CHEMISTRY_MAP[Pair(referenceMbti, targetMbti)]
+                ?: throw IllegalArgumentException("ChemistryMessage not found : $referenceMbti, $targetMbti")
+        }
     }
-
-
+    fun isEqualMbti(): Boolean {
+        return this.referenceMbti == this.targetMbti
+    }
 
     data class ChemistryMessage(
         val title: String,
         val description: String
     )
-
-    fun isEqualMbti(): Boolean {
-        return this.referenceMbti == this.targetMbti
-    }
 }
