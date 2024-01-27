@@ -6,6 +6,7 @@ import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import java.time.LocalDate
+import java.time.Period
 
 object MemberDto {
     data class MemberResponse(
@@ -41,7 +42,6 @@ object MemberDto {
     data class MemberCreateRequest(
         val name: String,
         val birthDate: LocalDate,
-        val age: Int,
         val jobGroup: String,
         val clubs: List<String>,
         val subwayStations: List<String>,
@@ -52,7 +52,7 @@ object MemberDto {
             return Member(
                 name = name,
                 birthDate = birthDate,
-                age = age,
+                age = Period.between(birthDate, LocalDate.now()).years,
                 constellation = Constellation.calculatedBy(birthDate),
                 jobGroup = JobGroup.valueOf(jobGroup.uppercase()),
                 clubs = clubs.map { Club.valueOf(it.uppercase()) },
