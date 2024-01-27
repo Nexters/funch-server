@@ -15,6 +15,13 @@ data class MemberMatching(
     private var totalItem: Int = 0
     private var matchedItem: Int = 0
 
+    fun getChemistryInfos(): List<ChemistryInfo> {
+        return listOf(
+            mbtiChemistry.chemistryInfo,
+            constellationChemistry.chemistryInfo,
+        )
+    }
+
     fun calculateSimilarity(): Int {
         countMatchedItemIf(mbtiChemistry.isEqualMbti())
         countMatchedItemIf(constellationChemistry.isEqualConstellation())
