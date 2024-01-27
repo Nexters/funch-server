@@ -1,6 +1,8 @@
 package kr.co.funch.api.interfaces.dto
 
 import kr.co.funch.api.domain.matching.model.ChemistryInfo
+import kr.co.funch.api.domain.matching.model.RecommendInfo
+import kr.co.funch.api.domain.matching.model.SubwayInfo
 import kr.co.funch.api.domain.member.model.Club
 import kr.co.funch.api.domain.member.model.Member
 
@@ -38,14 +40,5 @@ object MemberMatchingDto {
                 }
             }
         }
-
-        data class RecommendInfo(
-            val title: String,
-        )
-
-        data class SubwayInfo(
-            val name: String,
-            val lines: List<String>,
-        )
     }
 }
