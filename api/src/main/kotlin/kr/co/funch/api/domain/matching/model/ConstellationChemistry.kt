@@ -5,7 +5,7 @@ import kr.co.funch.api.domain.member.model.Constellation
 data class ConstellationChemistry(
     val referenceConstellation: Constellation,
     val targetConstellation: Constellation,
-    val message: ChemistryInfo,
+    val chemistryInfo: ChemistryInfo,
 ) {
     companion object {
         private val CHEMISTRY_MAP = HashMap<Pair<Constellation, Constellation>, ChemistryInfo>()
@@ -17,11 +17,11 @@ data class ConstellationChemistry(
             return ConstellationChemistry(
                 referenceConstellation,
                 targetConstellation,
-                getChemistryMessage(referenceConstellation, targetConstellation),
+                getChemistryInfo(referenceConstellation, targetConstellation),
             )
         }
 
-        private fun getChemistryMessage(
+        private fun getChemistryInfo(
             referenceConstellation: Constellation,
             targetConstellation: Constellation,
         ): ChemistryInfo {

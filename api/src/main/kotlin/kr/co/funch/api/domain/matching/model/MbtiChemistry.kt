@@ -5,7 +5,7 @@ import kr.co.funch.api.domain.member.model.Mbti
 data class MbtiChemistry(
     val referenceMbti: Mbti,
     val targetMbti: Mbti,
-    val message: ChemistryInfo,
+    val chemistryInfo: ChemistryInfo,
 ) {
     companion object {
         private val WORST_MESSAGE = ChemistryInfo("펀치가 아니면 몰랐을 사이", "미정")
@@ -199,11 +199,11 @@ data class MbtiChemistry(
             return MbtiChemistry(
                 referenceMbti,
                 targetMbti,
-                getChemistryMessage(referenceMbti, targetMbti),
+                getChemistryInfo(referenceMbti, targetMbti),
             )
         }
 
-        private fun getChemistryMessage(
+        private fun getChemistryInfo(
             referenceMbti: Mbti,
             targetMbti: Mbti,
         ): ChemistryInfo {
