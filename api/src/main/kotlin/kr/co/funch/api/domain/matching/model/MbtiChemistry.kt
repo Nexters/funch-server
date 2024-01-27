@@ -5,14 +5,14 @@ import kr.co.funch.api.domain.member.model.Mbti
 data class MbtiChemistry(
     val referenceMbti: Mbti,
     val targetMbti: Mbti,
-    val description: Description,
+    val chemistryMessage: ChemistryMessage,
 ) {
     companion object {
-        private const val WORST_MESSAGE = "펀치가 아니면 몰랐을 사이"
-        private const val BAD_MESSAGE = "서로를 알아가볼까요?"
-        private const val NORMAL_MESSAGE = "기막힌 타이밍에 등장한 너!"
-        private const val GOOD_MESSAGE = "To be determined."
-        private const val BEST_MESSAGE = "찾았다, 내 소울메이트!"
+        private val WORST_MESSAGE = ChemistryMessage("펀치가 아니면 몰랐을 사이", "미정")
+        private val BAD_MESSAGE = ChemistryMessage("서로를 알아가볼까요?", "미정")
+        private val NORMAL_MESSAGE = ChemistryMessage("기막힌 타이밍에 등장한 너!", "미정")
+        private val GOOD_MESSAGE = ChemistryMessage("To be determined.", "미정")
+        private val BEST_MESSAGE = ChemistryMessage("찾았다, 내 소울메이트!", "미정")
 
         private val CHEMISTRY_MAP = HashMap<Pair<Mbti, Mbti>, String>()
 
@@ -193,11 +193,11 @@ data class MbtiChemistry(
         }
     }
 
-    data class Description(
-        val text: String,
-        val highlightText: String,
-        val highlightColor: String,
-        val highlightColorOpacity: Float
+
+
+    data class ChemistryMessage(
+        val title: String,
+        val description: String
     )
 
     fun isEqualMbti(): Boolean {
