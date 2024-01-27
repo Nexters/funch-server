@@ -10,8 +10,8 @@ data class MbtiChemistry(
     companion object {
         private val WORST_MESSAGE = ChemistryInfo("펀치가 아니면 몰랐을 사이", "미정")
         private val BAD_MESSAGE = ChemistryInfo("서로를 알아가볼까요?", "미정")
-        private val NORMAL_MESSAGE = ChemistryInfo("기막힌 타이밍에 등장한 너!", "미정")
-        private val GOOD_MESSAGE = ChemistryInfo("To be determined.", "미정")
+        private val NORMAL_MESSAGE = ChemistryInfo("끈끈한 사이로 발전할 수 있어요!", "미정")
+        private val GOOD_MESSAGE = ChemistryInfo("기막힌 타이밍에 등장한 너!", "미정")
         private val BEST_MESSAGE = ChemistryInfo("찾았다, 내 소울메이트!", "미정")
 
         private val CHEMISTRY_MAP = HashMap<Pair<Mbti, Mbti>, ChemistryInfo>()
