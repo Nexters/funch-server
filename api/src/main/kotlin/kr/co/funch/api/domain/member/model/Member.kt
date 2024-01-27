@@ -31,6 +31,16 @@ data class Member(
     fun getMatchedClubs(member: Member): List<Club> {
         val referenceClubs = this.clubs.toSet()
         val targetClubs = member.clubs.toSet()
-        return referenceClubs.union(targetClubs.toSet()).toList()
+        return referenceClubs.union(targetClubs).toList()
+    }
+
+    fun getMatchedSubwayStations(member: Member): List<SubwayStation> {
+        val referenceSubwayStations = this.subwayStations.toSet()
+        val targetSubwayStations = member.subwayStations.toSet()
+        return referenceSubwayStations.union(targetSubwayStations).toList()
+    }
+
+    fun hasSameJobGroup(member: Member): Boolean {
+        return jobGroup == member.jobGroup
     }
 }
