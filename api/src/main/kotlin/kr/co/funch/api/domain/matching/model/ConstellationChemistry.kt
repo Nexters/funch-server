@@ -5,10 +5,10 @@ import kr.co.funch.api.domain.member.model.Constellation
 data class ConstellationChemistry(
     val referenceConstellation: Constellation,
     val targetConstellation: Constellation,
-    val message: Message,
+    val message: ChemistryInfo,
 ) {
     companion object {
-        private val CHEMISTRY_MAP = HashMap<Pair<Constellation, Constellation>, Message>()
+        private val CHEMISTRY_MAP = HashMap<Pair<Constellation, Constellation>, ChemistryInfo>()
 
         fun of(
             referenceConstellation: Constellation,
@@ -24,7 +24,7 @@ data class ConstellationChemistry(
         private fun getChemistryMessage(
             referenceConstellation: Constellation,
             targetConstellation: Constellation,
-        ): Message {
+        ): ChemistryInfo {
             return CHEMISTRY_MAP[Pair(referenceConstellation, targetConstellation)]
                 ?: throw IllegalArgumentException(
                     "ChemistryMessage not found : $referenceConstellation," +
@@ -36,9 +36,4 @@ data class ConstellationChemistry(
     fun isEqualConstellation(): Boolean {
         return referenceConstellation == targetConstellation
     }
-
-    data class Message(
-        val title: String,
-        val description: String,
-    )
 }

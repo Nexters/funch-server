@@ -5,16 +5,16 @@ import kr.co.funch.api.domain.member.model.Mbti
 data class MbtiChemistry(
     val referenceMbti: Mbti,
     val targetMbti: Mbti,
-    val message: Message,
+    val message: ChemistryInfo,
 ) {
     companion object {
-        private val WORST_MESSAGE = Message("펀치가 아니면 몰랐을 사이", "미정")
-        private val BAD_MESSAGE = Message("서로를 알아가볼까요?", "미정")
-        private val NORMAL_MESSAGE = Message("기막힌 타이밍에 등장한 너!", "미정")
-        private val GOOD_MESSAGE = Message("To be determined.", "미정")
-        private val BEST_MESSAGE = Message("찾았다, 내 소울메이트!", "미정")
+        private val WORST_MESSAGE = ChemistryInfo("펀치가 아니면 몰랐을 사이", "미정")
+        private val BAD_MESSAGE = ChemistryInfo("서로를 알아가볼까요?", "미정")
+        private val NORMAL_MESSAGE = ChemistryInfo("기막힌 타이밍에 등장한 너!", "미정")
+        private val GOOD_MESSAGE = ChemistryInfo("To be determined.", "미정")
+        private val BEST_MESSAGE = ChemistryInfo("찾았다, 내 소울메이트!", "미정")
 
-        private val CHEMISTRY_MAP = HashMap<Pair<Mbti, Mbti>, Message>()
+        private val CHEMISTRY_MAP = HashMap<Pair<Mbti, Mbti>, ChemistryInfo>()
 
         init {
             // ESTJ
@@ -206,7 +206,7 @@ data class MbtiChemistry(
         private fun getChemistryMessage(
             referenceMbti: Mbti,
             targetMbti: Mbti,
-        ): Message {
+        ): ChemistryInfo {
             return CHEMISTRY_MAP[Pair(referenceMbti, targetMbti)]
                 ?: throw IllegalArgumentException("ChemistryMessage not found : $referenceMbti, $targetMbti")
         }
@@ -215,9 +215,4 @@ data class MbtiChemistry(
     fun isEqualMbti(): Boolean {
         return referenceMbti == targetMbti
     }
-
-    data class Message(
-        val title: String,
-        val description: String,
-    )
 }
