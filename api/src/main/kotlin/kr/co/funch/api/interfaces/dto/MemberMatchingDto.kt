@@ -25,7 +25,7 @@ object MemberMatchingDto {
             val clubs: List<Club>,
             val mbti: String,
             val constellation: String,
-            val subwayName: List<String>,
+            val subwayNames: List<String>,
         ) {
             companion object {
                 fun from(member: Member): TargetProfile {
@@ -35,7 +35,7 @@ object MemberMatchingDto {
                         clubs = member.clubs,
                         mbti = member.mbti.name,
                         constellation = member.constellation.koreanName,
-                        subwayName = member.subwayStations.map { it.name }.toList(),
+                        subwayNames = member.subwayStations.map { it.name }.toList(),
                     )
                 }
             }
