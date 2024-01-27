@@ -43,4 +43,8 @@ data class Member(
     fun hasSameJobGroup(member: Member): Boolean {
         return jobGroup == member.jobGroup
     }
+
+    fun isSameMember(member: Member): Boolean {
+        return id == member.id
+    }
 }

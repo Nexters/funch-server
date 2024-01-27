@@ -17,6 +17,10 @@ class MemberMatchingService(
         val requestMember = memberService.findMember(requestMemberId)
         val targetMember = memberService.findMemberByDeviceNumber(targetMemberCode)
 
+        require(!requestMember.isSameMember(targetMember)) {
+            "request member is the same with target member - member key: ${requestMember.id}"
+        }
+
         val mbtiChemistry = MbtiChemistry.of(requestMember.mbti, targetMember.mbti)
         val constellationChemistry =
             ConstellationChemistry.of(
