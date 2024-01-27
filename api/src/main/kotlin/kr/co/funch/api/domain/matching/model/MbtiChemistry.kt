@@ -192,25 +192,32 @@ data class MbtiChemistry(
                 }
         }
 
-        fun of(referenceMbti: Mbti, targetMbti: Mbti): MbtiChemistry {
+        fun of(
+            referenceMbti: Mbti,
+            targetMbti: Mbti,
+        ): MbtiChemistry {
             return MbtiChemistry(
                 referenceMbti,
                 targetMbti,
-                getChemistryMessage(referenceMbti, targetMbti)
+                getChemistryMessage(referenceMbti, targetMbti),
             )
         }
 
-        private fun getChemistryMessage(referenceMbti: Mbti, targetMbti: Mbti): Message {
+        private fun getChemistryMessage(
+            referenceMbti: Mbti,
+            targetMbti: Mbti,
+        ): Message {
             return CHEMISTRY_MAP[Pair(referenceMbti, targetMbti)]
                 ?: throw IllegalArgumentException("ChemistryMessage not found : $referenceMbti, $targetMbti")
         }
     }
+
     fun isEqualMbti(): Boolean {
-        return this.referenceMbti == this.targetMbti
+        return referenceMbti == targetMbti
     }
 
     data class Message(
         val title: String,
-        val description: String
+        val description: String,
     )
 }
