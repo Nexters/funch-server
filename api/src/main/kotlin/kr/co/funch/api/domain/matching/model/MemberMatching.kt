@@ -15,11 +15,30 @@ data class MemberMatching(
     private var totalItem: Int = 0
     private var matchedItem: Int = 0
 
-    fun getChemistryInfos(): List<ChemistryInfo> {
-        return listOf(
+    fun getChemistryInfos(): Set<ChemistryInfo> {
+        return setOf(
             mbtiChemistry.chemistryInfo,
             constellationChemistry.chemistryInfo,
         )
+    }
+
+    fun getRecommendInfos(): Set<RecommendInfo> {
+        val recommendInfos = mutableSetOf<RecommendInfo>()
+        if (mbtiChemistry.isEqualMbti()) {
+            recommendInfos.add(RecommendInfo(targetMember.mbti.name))
+        }
+        if (constellationChemistry.isEqualConstellation()) {
+            recommendInfos.add(RecommendInfo(targetMember.constellation.koreanName))
+        }
+        if (jobMatching) {
+            recommendInfos.add(RecommendInfo(targetMember.jobGroup.koreanName))
+        }
+        matchingClubInfo
+            .forEach { recommendInfos.add(RecommendInfo(it.name)) }
+        matchingSubwayInfo
+            .forEach { recommendInfos.add(RecommendInfo(it.name)) }
+
+        return recommendInfos.toSet()
     }
 
     fun calculateSimilarity(): Int {

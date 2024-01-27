@@ -15,9 +15,9 @@ object MemberMatchingDto {
     data class MatchingResponseDto(
         val profile: TargetProfile,
         val similarity: Int,
-        val chemistryInfos: List<ChemistryInfo>,
-        val recommendInfos: List<RecommendInfo>,
-        val subwayInfos: List<SubwayInfo>,
+        val chemistryInfos: Set<ChemistryInfo>,
+        val recommendInfos: Set<RecommendInfo>,
+        val subwayInfos: Set<SubwayInfo>,
     ) {
         data class TargetProfile(
             val name: String,
