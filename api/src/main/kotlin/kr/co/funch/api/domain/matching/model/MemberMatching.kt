@@ -15,12 +15,12 @@ data class MemberMatching(
     private var totalItem: Int = 0
     private var matchedItem: Int = 0
 
-    fun getMatchingRatio(): Int {
-        addMatchedItemIf(mbtiChemistry.isEqualMbti())
-        addMatchedItemIf(constellationChemistry.isEqualConstellation())
-        addMatchedItemIf(jobMatching)
-        addMatchedItemIf(matchingClubInfo.isNotEmpty())
-        addMatchedItemIf(matchingSubwayInfo.isNotEmpty())
+    fun calculateSimilarity(): Int {
+        countMatchedItemIf(mbtiChemistry.isEqualMbti())
+        countMatchedItemIf(constellationChemistry.isEqualConstellation())
+        countMatchedItemIf(jobMatching)
+        countMatchedItemIf(matchingClubInfo.isNotEmpty())
+        countMatchedItemIf(matchingSubwayInfo.isNotEmpty())
         return matchedItem * 100 / totalItem
     }
 
