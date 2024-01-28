@@ -75,7 +75,7 @@ tasks {
             image = "seyoung755/funch-api:latest"
         }
         container {
-            args =
+            jvmFlags =
                 listOf(
                     "-Dspring.profiles.active=prod",
                 )
