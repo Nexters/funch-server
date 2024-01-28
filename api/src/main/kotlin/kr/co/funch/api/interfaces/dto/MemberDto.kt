@@ -5,8 +5,10 @@ import kr.co.funch.api.domain.member.model.Constellation
 import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
+import org.bson.types.ObjectId
 import java.time.LocalDate
 import java.time.Period
+import java.time.LocalDateTime
 
 object MemberDto {
     data class MemberResponse(
@@ -33,7 +35,7 @@ object MemberDto {
                     clubs = member.clubs.map { it.name },
                     subwayStations = member.subwayStations.map { it.name },
                     mbti = member.mbti.name,
-                    memberCode = member.memberCode,
+                    memberCode = member.memberCode.orEmpty(),
                 )
             }
         }
@@ -50,6 +52,7 @@ object MemberDto {
     ) {
         fun toDomain(): Member {
             return Member(
+                id = ObjectId(),
                 name = name,
                 birthDate = birthDate,
                 age = Period.between(birthDate, LocalDate.now()).years,
@@ -59,6 +62,8 @@ object MemberDto {
                 subwayStations = emptyList(),
                 mbti = Mbti.valueOf(mbti.uppercase()),
                 deviceNumber = deviceNumber,
+                createdAt = LocalDateTime.now(),
+                updatedAt = LocalDateTime.now(),
             )
         }
     }

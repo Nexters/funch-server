@@ -17,6 +17,8 @@ interface MemberRepositoryCustom {
     suspend fun findMemberById(id: ObjectId): Member?
 
     suspend fun findMemberByDeviceNumber(deviceNumber: String): Member?
+
+    suspend fun findByCode(code: String): Member?
 }
 
 @Repository
@@ -39,6 +41,16 @@ class MemberRepositoryCustomImpl(
             val criteria = Criteria()
             criteria
                 .and("deviceNumber").`is`(deviceNumber)
+
+            mongoOperations.findOne(Query(criteria), Member::class.java)
+                .awaitFirstOrNull()
+        }
+
+    override suspend fun findByCode(code: String): Member? =
+        withContext(ioDispatcher) {
+            val criteria = Criteria()
+            criteria
+                .and("code").`is`(code)
 
             mongoOperations.findOne(Query(criteria), Member::class.java)
                 .awaitFirstOrNull()
