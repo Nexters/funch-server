@@ -52,7 +52,7 @@ jobs:
             sudo docker rm funch-api
 
             # remove images except the previous version for rollback
-            sudo docker images | grep funch-api | sort -k2 | awk '{if(NR>1) print $3}' | xargs docker rmi --force
+            sudo docker images | grep funch-api | sort -k2 | awk '{if(NR>1) print $3}' | xargs sudo docker rmi --force
             echo $1 | sudo docker images
 
             # deploy container of new version
