@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Document(collection = "Member")
 data class Member(
@@ -21,13 +22,10 @@ data class Member(
     val viewCount: Int = 0,
     @Indexed(unique = true)
     val deviceNumber: String,
+    val memberCode: String? = null,
+    val createdAt: LocalDateTime,
+    val updatedAt: LocalDateTime,
 ) {
-    val memberCode: String
-        get() = "${birthDate.year.toString().substring(
-            2,
-            4,
-        )}${birthDate.monthValue}${birthDate.dayOfMonth}${id.toString().substring(0, 4)}"
-
     fun getMatchedClubs(member: Member): List<Club> {
         val referenceClubs = this.clubs.toSet()
         val targetClubs = member.clubs.toSet()
@@ -47,4 +45,3 @@ data class Member(
     fun isSameMember(member: Member): Boolean {
         return id == member.id
     }
-}

@@ -24,12 +24,29 @@ class MemberService(
         subwayStationIds: List<String>,
     ): Member {
         return try {
-            memberRepository.save(member)
+            memberRepository.save(
+                member.copy(memberCode = generateMemberCode()),
+            )
                 .awaitFirstOrNull()
                 ?: throw IllegalArgumentException()
             // TODO : exception handling for duplicate key
         } catch (e: Exception) {
             throw IllegalArgumentException("Member didn't saved - deviceNumber: ${member.deviceNumber}")
         }
+    }
+
+    private suspend fun generateMemberCode(): String {
+        val letters = ('A'..'Z').toList()
+        val numbers = ('0'..'9').toList()
+        var code: String
+
+        do {
+            val randomLetters = List(2) { letters.random() }
+            val randomNumbers = List(2) { numbers.random() }
+            val combined = (randomLetters + randomNumbers).shuffled()
+            code = combined.joinToString("")
+        } while (memberRepository.findByCode(code) != null)
+
+        return code
     }
 }
