@@ -18,8 +18,8 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v4.0.0
         with:
-        java-version: '17'
-        distribution: 'temurin'
+          java-version: '17'
+          distribution: 'temurin'
 
       - name: Docker Registry Login
         uses: docker/login-action@v3.0.0
