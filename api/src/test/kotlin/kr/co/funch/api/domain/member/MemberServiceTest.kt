@@ -34,7 +34,7 @@ class MemberServiceTest : BehaviorSpec() {
                     age = 23,
                     constellation = Constellation.ARIES,
                     createdAt = LocalDateTime.now(),
-                    updatedAt = LocalDateTime.now()
+                    updatedAt = LocalDateTime.now(),
                 )
 
             When("findMember") {
