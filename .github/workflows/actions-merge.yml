@@ -3,6 +3,10 @@ name: CI/CD-workflow
 on:
   push:
     branches: ["main", "develop"]
+  pull_request:
+    types:
+      - opened
+      - synchronize
 
 jobs:
   build:
