@@ -19,6 +19,11 @@ class MemberService(
             ?: throw IllegalArgumentException("Member not found - deviceNumber: $deviceNumber")
     }
 
+    suspend fun findMemberByCode(code: String): Member {
+        return memberRepository.findByCode(code)
+            ?: throw IllegalArgumentException("Member not found - code : $code")
+    }
+
     suspend fun createMember(
         member: Member,
         subwayStationIds: List<String>,
