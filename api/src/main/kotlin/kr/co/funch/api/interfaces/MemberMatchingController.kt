@@ -1,5 +1,6 @@
 package kr.co.funch.api.interfaces
 
+import io.swagger.v3.oas.annotations.Operation
 import kr.co.funch.api.domain.matching.MemberMatchingService
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 class MemberMatchingController(
     private val memberMatchingService: MemberMatchingService,
 ) {
+    @Operation(summary = "프로필 매칭")
     @PostMapping
     suspend fun match(
         @RequestBody matchingDto: MemberMatchingDto.MatchingRequestDto,
