@@ -7,8 +7,8 @@ import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
 import java.time.LocalDate
-import java.time.Period
 import java.time.LocalDateTime
+import java.time.Period
 
 object MemberDto {
     data class MemberResponse(
