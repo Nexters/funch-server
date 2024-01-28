@@ -10,6 +10,7 @@ import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class MemberServiceTest : BehaviorSpec() {
     init {
@@ -32,6 +33,8 @@ class MemberServiceTest : BehaviorSpec() {
                     birthDate = LocalDate.now(),
                     age = 23,
                     constellation = Constellation.ARIES,
+                    createdAt = LocalDateTime.now(),
+                    updatedAt = LocalDateTime.now()
                 )
 
             When("findMember") {
