@@ -45,3 +45,4 @@ data class Member(
     fun isSameMember(member: Member): Boolean {
         return id == member.id
     }
+}
