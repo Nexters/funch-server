@@ -8,6 +8,7 @@ import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
 import java.time.LocalDate
 import java.time.Period
+import java.time.LocalDateTime
 
 object MemberDto {
     data class MemberResponse(
@@ -61,8 +62,8 @@ object MemberDto {
                 subwayStations = emptyList(),
                 mbti = Mbti.valueOf(mbti.uppercase()),
                 deviceNumber = deviceNumber,
-                createdAt = LocalDate.now().atStartOfDay(),
-                updatedAt = LocalDate.now().atStartOfDay(),
+                createdAt = LocalDateTime.now(),
+                updatedAt = LocalDateTime.now(),
             )
         }
     }
