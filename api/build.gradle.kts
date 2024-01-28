@@ -75,9 +75,10 @@ tasks {
             image = "seyoung755/funch-api:latest"
         }
         container {
-            args = listOf(
-                "-Dspring.profiles.active=prod"
-            )
+            args =
+                listOf(
+                    "-Dspring.profiles.active=prod",
+                )
         }
     }
 }
