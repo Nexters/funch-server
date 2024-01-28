@@ -72,7 +72,7 @@ tasks {
             image = "openjdk:17-alpine"
         }
         to {
-            image = "seyoung755/funch:latest"
+            image = "seyoung755/funch-api:latest"
         }
     }
 }
