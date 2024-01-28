@@ -7,8 +7,8 @@ import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
 import java.time.LocalDate
-import java.time.Period
 import java.time.LocalDateTime
+import java.time.Period
 
 object MemberDto {
     data class MemberResponse(
@@ -35,7 +35,7 @@ object MemberDto {
                     clubs = member.clubs.map { it.name },
                     subwayStations = member.subwayStations.map { it.name },
                     mbti = member.mbti.name,
-                    memberCode = member.memberCode.orEmpty(),
+                    memberCode = member.code.orEmpty(),
                 )
             }
         }

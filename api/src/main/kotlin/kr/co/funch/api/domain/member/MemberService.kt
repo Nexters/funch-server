@@ -4,7 +4,6 @@ import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Service
-import java.lang.IllegalArgumentException
 
 @Service
 class MemberService(
@@ -20,13 +19,18 @@ class MemberService(
             ?: throw IllegalArgumentException("Member not found - deviceNumber: $deviceNumber")
     }
 
+    suspend fun findMemberByCode(code: String): Member {
+        return memberRepository.findByCode(code)
+            ?: throw IllegalArgumentException("Member not found - code : $code")
+    }
+
     suspend fun createMember(
         member: Member,
         subwayStationIds: List<String>,
     ): Member {
         return try {
             memberRepository.save(
-                member.copy(memberCode = generateMemberCode()),
+                member.copy(code = generateMemberCode()),
             )
                 .awaitFirstOrNull()
                 ?: throw IllegalArgumentException()

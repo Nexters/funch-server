@@ -22,7 +22,27 @@ data class Member(
     val viewCount: Int = 0,
     @Indexed(unique = true)
     val deviceNumber: String,
-    val memberCode: String? = null,
+    val code: String? = null,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
-)
+) {
+    fun getMatchedClubs(member: Member): List<Club> {
+        val referenceClubs = this.clubs.toSet()
+        val targetClubs = member.clubs.toSet()
+        return referenceClubs.intersect(targetClubs).toList()
+    }
+
+    fun getMatchedSubwayStations(member: Member): List<SubwayStation> {
+        val referenceSubwayStations = this.subwayStations.toSet()
+        val targetSubwayStations = member.subwayStations.toSet()
+        return referenceSubwayStations.intersect(targetSubwayStations).toList()
+    }
+
+    fun hasSameJobGroup(member: Member): Boolean {
+        return jobGroup == member.jobGroup
+    }
+
+    fun isSameMember(member: Member): Boolean {
+        return id == member.id
+    }
+}
