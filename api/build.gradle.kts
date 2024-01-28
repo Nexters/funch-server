@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+plugins {
+    id("com.google.cloud.tools.jib") version "3.1.1"
+}
+
 noArg {
     annotation("javax.persistence.Entity")
     annotation("javax.persistence.MappedSuperclass")
@@ -61,5 +65,20 @@ tasks {
 
     bootJar {
         archiveFileName.set(archiveBaseName.get() + "." + archiveExtension.get())
+    }
+
+    jib {
+        from {
+            image = "openjdk:17-alpine"
+        }
+        to {
+            image = "seyoung755/funch-api:latest"
+        }
+        container {
+            jvmFlags =
+                listOf(
+                    "-Dspring.profiles.active=prod",
+                )
+        }
     }
 }
