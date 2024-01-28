@@ -35,7 +35,7 @@ object MemberDto {
                     clubs = member.clubs.map { it.name },
                     subwayStations = member.subwayStations.map { it.name },
                     mbti = member.mbti.name,
-                    memberCode = member.memberCode.orEmpty(),
+                    memberCode = member.code.orEmpty(),
                 )
             }
         }

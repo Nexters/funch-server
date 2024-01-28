@@ -22,7 +22,7 @@ data class Member(
     val viewCount: Int = 0,
     @Indexed(unique = true)
     val deviceNumber: String,
-    val memberCode: String? = null,
+    val code: String? = null,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
 ) {

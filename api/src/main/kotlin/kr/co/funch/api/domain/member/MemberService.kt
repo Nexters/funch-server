@@ -30,7 +30,7 @@ class MemberService(
     ): Member {
         return try {
             memberRepository.save(
-                member.copy(memberCode = generateMemberCode()),
+                member.copy(code = generateMemberCode()),
             )
                 .awaitFirstOrNull()
                 ?: throw IllegalArgumentException()
