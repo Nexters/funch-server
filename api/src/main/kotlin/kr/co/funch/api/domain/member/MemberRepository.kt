@@ -50,7 +50,7 @@ class MemberRepositoryCustomImpl(
         withContext(ioDispatcher) {
             val criteria = Criteria()
             criteria
-                .and("memberCode").`is`(code)
+                .and("code").`is`(code)
 
             mongoOperations.findOne(Query(criteria), Member::class.java)
                 .awaitFirstOrNull()
