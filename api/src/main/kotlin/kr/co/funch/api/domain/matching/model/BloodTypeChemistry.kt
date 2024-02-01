@@ -13,32 +13,35 @@ data class BloodTypeChemistry(
         private val SOSO_GRADE_MESSAGE = "안정적인 관계인 우리"
         private val BAD_GRADE_MESSAGE = "서로 다른 점을 찾는 재미"
 
-        private val CHEMISTRY_TITLE_MAP = HashMap<Pair<BloodType, BloodType>, String>()
+        private val CHEMISTRY_TITLE_MAP: Map<Pair<BloodType, BloodType>, String>
 
         init {
+            val tempMap = mutableMapOf<Pair<BloodType, BloodType>, String>()
             // A형
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.A, BloodType.A)] = GOOD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.A, BloodType.B)] = BAD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.A, BloodType.AB)] = GOOD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.A, BloodType.O)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.A, BloodType.A)] = GOOD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.A, BloodType.B)] = BAD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.A, BloodType.AB)] = GOOD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.A, BloodType.O)] = GREAT_GRADE_MESSAGE
 
             // B형
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.B, BloodType.A)] = BAD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.B, BloodType.B)] = GOOD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.B, BloodType.AB)] = GREAT_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.B, BloodType.O)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.B, BloodType.A)] = BAD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.B, BloodType.B)] = GOOD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.B, BloodType.AB)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.B, BloodType.O)] = GREAT_GRADE_MESSAGE
 
             // AB형
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.AB, BloodType.A)] = GOOD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.AB, BloodType.B)] = GREAT_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.AB, BloodType.AB)] = GREAT_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.AB, BloodType.O)] = BAD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.AB, BloodType.A)] = GOOD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.AB, BloodType.B)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.AB, BloodType.AB)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.AB, BloodType.O)] = BAD_GRADE_MESSAGE
 
             // O형
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.O, BloodType.A)] = GREAT_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.O, BloodType.B)] = GREAT_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.O, BloodType.AB)] = BAD_GRADE_MESSAGE
-            CHEMISTRY_TITLE_MAP[Pair(BloodType.O, BloodType.O)] = SOSO_GRADE_MESSAGE
+            tempMap[Pair(BloodType.O, BloodType.A)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.O, BloodType.B)] = GREAT_GRADE_MESSAGE
+            tempMap[Pair(BloodType.O, BloodType.AB)] = BAD_GRADE_MESSAGE
+            tempMap[Pair(BloodType.O, BloodType.O)] = SOSO_GRADE_MESSAGE
+
+            CHEMISTRY_TITLE_MAP = tempMap.toMap()
         }
 
         fun of(
