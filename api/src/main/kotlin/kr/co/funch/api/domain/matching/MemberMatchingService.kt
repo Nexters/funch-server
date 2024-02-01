@@ -1,6 +1,6 @@
 package kr.co.funch.api.domain.matching
 
-import kr.co.funch.api.domain.matching.model.ConstellationChemistry
+import kr.co.funch.api.domain.matching.model.BloodTypeChemistry
 import kr.co.funch.api.domain.matching.model.MbtiChemistry
 import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.domain.member.MemberService
@@ -22,10 +22,10 @@ class MemberMatchingService(
         }
 
         val mbtiChemistry = MbtiChemistry.of(requestMember.mbti, targetMember.mbti)
-        val constellationChemistry =
-            ConstellationChemistry.of(
-                requestMember.constellation,
-                targetMember.constellation,
+        val bloodTypeChemistry =
+            BloodTypeChemistry.of(
+                requestMember.bloodType,
+                targetMember.bloodType,
             )
         val matchedClubs = requestMember.getMatchedClubs(targetMember)
         val matchedSubwayStations = requestMember.getMatchedSubwayStations(targetMember)
@@ -33,7 +33,7 @@ class MemberMatchingService(
         return MemberMatching(
             targetMember,
             mbtiChemistry,
-            constellationChemistry,
+            bloodTypeChemistry,
             requestMember.hasSameJobGroup(targetMember),
             matchedClubs,
             matchedSubwayStations,

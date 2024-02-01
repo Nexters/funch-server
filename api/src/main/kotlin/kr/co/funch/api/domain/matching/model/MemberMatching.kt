@@ -7,7 +7,7 @@ import kr.co.funch.api.domain.member.model.SubwayStation
 data class MemberMatching(
     val targetMember: Member,
     val mbtiChemistry: MbtiChemistry,
-    val constellationChemistry: ConstellationChemistry,
+    val bloodTypeChemistry: BloodTypeChemistry,
     val jobMatching: Boolean,
     val matchingClubInfo: List<Club>,
     val matchingSubwayInfo: List<SubwayStation>,
@@ -18,7 +18,7 @@ data class MemberMatching(
     fun getChemistryInfos(): List<ChemistryInfo> {
         return listOf(
             mbtiChemistry.chemistryInfo,
-            constellationChemistry.chemistryInfo,
+            bloodTypeChemistry.chemistryInfo,
         )
     }
 
@@ -27,11 +27,11 @@ data class MemberMatching(
         if (mbtiChemistry.isEqualMbti()) {
             recommendInfos.add(RecommendInfo(targetMember.mbti.name))
         }
-        if (constellationChemistry.isEqualConstellation()) {
-            recommendInfos.add(RecommendInfo(targetMember.constellation.koreanName))
+        if (bloodTypeChemistry.isEqualBloodType()) {
+            recommendInfos.add(RecommendInfo(targetMember.bloodType.name))
         }
         if (jobMatching) {
-            recommendInfos.add(RecommendInfo(targetMember.jobGroup.koreanName))
+            recommendInfos.add(RecommendInfo("${targetMember.jobGroup.koreanName}형"))
         }
         matchingClubInfo
             .forEach { recommendInfos.add(RecommendInfo(it.name)) }
@@ -49,7 +49,7 @@ data class MemberMatching(
 
     fun calculateSimilarity(): Int {
         countMatchedItemIf(mbtiChemistry.isEqualMbti())
-        countMatchedItemIf(constellationChemistry.isEqualConstellation())
+        countMatchedItemIf(bloodTypeChemistry.isEqualBloodType())
         countMatchedItemIf(jobMatching)
         countMatchedItemIf(matchingClubInfo.isNotEmpty())
         countMatchedItemIf(matchingSubwayInfo.isNotEmpty())

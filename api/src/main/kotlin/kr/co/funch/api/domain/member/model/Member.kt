@@ -14,7 +14,7 @@ data class Member(
     val name: String,
     val birthDate: LocalDate,
     val age: Int,
-    val constellation: Constellation,
+    val bloodType: BloodType,
     val jobGroup: JobGroup,
     val clubs: List<Club>,
     val subwayStations: List<SubwayStation>,

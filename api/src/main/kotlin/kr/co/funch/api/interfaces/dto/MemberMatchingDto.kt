@@ -24,7 +24,7 @@ object MemberMatchingDto {
             val jobGroup: String,
             val clubs: List<Club>,
             val mbti: String,
-            val constellation: String,
+            val bloodType: String,
             val subwayNames: List<String>,
         ) {
             companion object {
@@ -34,7 +34,7 @@ object MemberMatchingDto {
                         jobGroup = member.jobGroup.koreanName,
                         clubs = member.clubs,
                         mbti = member.mbti.name,
-                        constellation = member.constellation.koreanName,
+                        bloodType = member.bloodType.name,
                         subwayNames = member.subwayStations.map { it.name }.toList(),
                     )
                 }
