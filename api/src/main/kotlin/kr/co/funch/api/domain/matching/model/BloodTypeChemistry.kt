@@ -55,7 +55,9 @@ data class BloodTypeChemistry(
                 chemistryInfo =
                     ChemistryInfo(
                         title = getChemistryTitle(referenceBloodType, targetBloodType),
-                        description = "${targetBloodType}형인 ${targetMemberName}님은 ${referenceBloodType.additionalInfo}!",
+                        description =
+                            "${targetBloodType}형인 ${targetMemberName}님은 " +
+                                "${referenceBloodType.additionalInfo}!",
                     ),
             )
         }
