@@ -17,5 +17,4 @@ enum class Mbti(val additionalInfo: String) {
     ISFP("따뜻한 감성을 가진 프로취존러 타입"),
     ISTJ("한번 시작한 일은 끝내는 불도저 타입"),
     ISTP("재주가 많지만 시작이 힘든 귀차니스트"),
-
 }

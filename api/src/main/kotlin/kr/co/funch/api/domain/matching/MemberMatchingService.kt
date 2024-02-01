@@ -21,7 +21,12 @@ class MemberMatchingService(
             "request member is the same with target member - member key: ${requestMember.id}"
         }
 
-        val mbtiChemistry = MbtiChemistry.of(requestMember.mbti, targetMember.mbti, targetMember.name)
+        val mbtiChemistry =
+            MbtiChemistry.of(
+                requestMember.mbti,
+                targetMember.mbti,
+                targetMember.name,
+            )
         val bloodTypeChemistry =
             BloodTypeChemistry.of(
                 requestMember.bloodType,

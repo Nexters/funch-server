@@ -195,15 +195,16 @@ data class MbtiChemistry(
         fun of(
             referenceMbti: Mbti,
             targetMbti: Mbti,
-            targetMemberName: String
+            targetMemberName: String,
         ): MbtiChemistry {
             return MbtiChemistry(
                 referenceMbti = referenceMbti,
                 targetMbti = targetMbti,
-                chemistryInfo = ChemistryInfo(
-                    title = getChemistryTitle(referenceMbti, targetMbti),
-                    description = "${targetMbti}인 ${targetMemberName}님은 ${targetMbti.additionalInfo}!"
-                )
+                chemistryInfo =
+                    ChemistryInfo(
+                        title = getChemistryTitle(referenceMbti, targetMbti),
+                        description = "${targetMbti}인 ${targetMemberName}님은 ${targetMbti.additionalInfo}!",
+                    ),
             )
         }
 
