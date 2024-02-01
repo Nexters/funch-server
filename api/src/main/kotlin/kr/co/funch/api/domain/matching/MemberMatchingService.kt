@@ -31,6 +31,7 @@ class MemberMatchingService(
             BloodTypeChemistry.of(
                 requestMember.bloodType,
                 targetMember.bloodType,
+                targetMember.name,
             )
         val matchedClubs = requestMember.getMatchedClubs(targetMember)
         val matchedSubwayStations = requestMember.getMatchedSubwayStations(targetMember)
