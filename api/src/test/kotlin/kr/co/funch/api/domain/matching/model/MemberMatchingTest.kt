@@ -20,7 +20,7 @@ class MemberMatchingTest : BehaviorSpec() {
                     birthDate = LocalDate.now(),
                     age = 1,
                     constellation = Constellation.calculatedBy(LocalDate.now()),
-                    jobGroup = JobGroup.IOS,
+                    jobGroup = JobGroup.DEVELOPER,
                     clubs = listOf(Club.NEXTERS, Club.SOPT),
                     subwayStations = emptyList(),
                     createdAt = LocalDateTime.now(),
