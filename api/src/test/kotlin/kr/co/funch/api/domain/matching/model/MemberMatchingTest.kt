@@ -17,7 +17,7 @@ class MemberMatchingTest : BehaviorSpec() {
                 Member(
                     name = "test",
                     bloodType = BloodType.O,
-                    jobGroup = JobGroup.IOS,
+                    jobGroup = JobGroup.DEVELOPER,
                     clubs = listOf(Club.NEXTERS, Club.SOPT),
                     subwayStations = emptyList(),
                     createdAt = LocalDateTime.now(),

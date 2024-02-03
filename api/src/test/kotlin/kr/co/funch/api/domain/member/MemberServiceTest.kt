@@ -26,7 +26,7 @@ class MemberServiceTest : BehaviorSpec() {
                     name = "test",
                     deviceNumber = "test",
                     mbti = Mbti.ENFJ,
-                    jobGroup = JobGroup.FRONTEND,
+                    jobGroup = JobGroup.DEVELOPER,
                     clubs = emptyList(),
                     subwayStations = emptyList(),
                     bloodType = BloodType.A,
