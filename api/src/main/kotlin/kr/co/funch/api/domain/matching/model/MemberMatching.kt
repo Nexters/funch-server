@@ -28,10 +28,10 @@ data class MemberMatching(
             recommendInfos.add(RecommendInfo(targetMember.mbti.name))
         }
         if (bloodTypeChemistry.isEqualBloodType()) {
-            recommendInfos.add(RecommendInfo(targetMember.bloodType.name))
+            recommendInfos.add(RecommendInfo("${targetMember.bloodType.name}형"))
         }
         if (jobMatching) {
-            recommendInfos.add(RecommendInfo("${targetMember.jobGroup.koreanName}형"))
+            recommendInfos.add(RecommendInfo(targetMember.jobGroup.koreanName))
         }
         matchingClubInfo
             .forEach { recommendInfos.add(RecommendInfo(it.name)) }
