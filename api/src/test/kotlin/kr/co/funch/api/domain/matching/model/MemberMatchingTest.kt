@@ -32,11 +32,17 @@ class MemberMatchingTest : BehaviorSpec() {
             val memberMatching =
                 MemberMatching(
                     targetMember = targetMember,
-                    mbtiChemistry = MbtiChemistry.of(Mbti.ISTJ, Mbti.ISTJ, targetMember.name),
+                    mbtiChemistry =
+                        MbtiChemistry.of(
+                            Mbti.ISTJ,
+                            Mbti.ISTJ,
+                            targetMember.name,
+                        ),
                     bloodTypeChemistry =
                         BloodTypeChemistry.of(
                             BloodType.O,
                             BloodType.A,
+                            targetMember.name,
                         ),
                     jobMatching = true,
                     matchingClubInfo = listOf(Club.NEXTERS),
