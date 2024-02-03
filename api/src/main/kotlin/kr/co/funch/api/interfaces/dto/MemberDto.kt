@@ -37,7 +37,7 @@ object MemberDto {
                     subwayStations = member.subwayStations.map { it.name },
                     mbti = member.mbti.name,
                     memberCode = member.code.orEmpty(),
-                    viewCount = member.viewCount
+                    viewCount = member.viewCount,
                 )
             }
         }

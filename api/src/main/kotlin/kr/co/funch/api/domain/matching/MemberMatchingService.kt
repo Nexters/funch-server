@@ -36,6 +36,8 @@ class MemberMatchingService(
         val matchedClubs = requestMember.getMatchedClubs(targetMember)
         val matchedSubwayStations = requestMember.getMatchedSubwayStations(targetMember)
 
+        memberService.updateTargetMemberAfterMatching(targetMember)
+
         return MemberMatching(
             targetMember,
             mbtiChemistry,
