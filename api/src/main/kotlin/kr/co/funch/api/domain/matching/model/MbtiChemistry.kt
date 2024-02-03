@@ -192,7 +192,7 @@ data class MbtiChemistry(
                     tempMap[Pair(it.key.second, it.key.first)] = it.value
                 }
 
-            CHEMISTRY_TITLE_MAP = tempMap.toMap()
+            CHEMISTRY_TITLE_MAP = tempMap
         }
 
         fun of(

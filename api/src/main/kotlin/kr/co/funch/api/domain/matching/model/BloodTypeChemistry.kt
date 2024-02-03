@@ -41,7 +41,7 @@ data class BloodTypeChemistry(
             tempMap[Pair(BloodType.O, BloodType.AB)] = BAD_GRADE_MESSAGE
             tempMap[Pair(BloodType.O, BloodType.O)] = SOSO_GRADE_MESSAGE
 
-            CHEMISTRY_TITLE_MAP = tempMap.toMap()
+            CHEMISTRY_TITLE_MAP = tempMap
         }
 
         fun of(
