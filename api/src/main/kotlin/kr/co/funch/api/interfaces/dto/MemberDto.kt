@@ -1,7 +1,7 @@
 package kr.co.funch.api.interfaces.dto
 
+import kr.co.funch.api.domain.member.model.BloodType
 import kr.co.funch.api.domain.member.model.Club
-import kr.co.funch.api.domain.member.model.Constellation
 import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
@@ -16,7 +16,7 @@ object MemberDto {
         val name: String,
         val birth: LocalDate,
         val age: Int,
-        val constellation: String,
+        val bloodType: String,
         val jobGroup: String,
         val clubs: List<String>,
         val subwayStations: List<String>,
@@ -30,7 +30,7 @@ object MemberDto {
                     name = member.name,
                     birth = member.birthDate,
                     age = member.age,
-                    constellation = member.constellation.koreanName,
+                    bloodType = member.bloodType.name,
                     jobGroup = member.jobGroup.koreanName,
                     clubs = member.clubs.map { it.name },
                     subwayStations = member.subwayStations.map { it.name },
@@ -46,6 +46,7 @@ object MemberDto {
         val birthDate: LocalDate,
         val jobGroup: String,
         val clubs: List<String>,
+        val bloodType: String,
         val subwayStations: List<String>,
         val mbti: String,
         val deviceNumber: String,
@@ -56,7 +57,7 @@ object MemberDto {
                 name = name,
                 birthDate = birthDate,
                 age = Period.between(birthDate, LocalDate.now()).years,
-                constellation = Constellation.calculatedBy(birthDate),
+                bloodType = BloodType.valueOf(bloodType.uppercase()),
                 jobGroup = JobGroup.valueOf(jobGroup.uppercase()),
                 clubs = clubs.map { Club.valueOf(it.uppercase()) },
                 subwayStations = emptyList(),

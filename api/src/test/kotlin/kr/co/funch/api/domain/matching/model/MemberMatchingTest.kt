@@ -2,8 +2,8 @@ package kr.co.funch.api.domain.matching.model
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import kr.co.funch.api.domain.member.model.BloodType
 import kr.co.funch.api.domain.member.model.Club
-import kr.co.funch.api.domain.member.model.Constellation
 import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
@@ -19,7 +19,7 @@ class MemberMatchingTest : BehaviorSpec() {
                     name = "test",
                     birthDate = LocalDate.now(),
                     age = 1,
-                    constellation = Constellation.calculatedBy(LocalDate.now()),
+                    bloodType = BloodType.O,
                     jobGroup = JobGroup.IOS,
                     clubs = listOf(Club.NEXTERS, Club.SOPT),
                     subwayStations = emptyList(),
@@ -33,10 +33,10 @@ class MemberMatchingTest : BehaviorSpec() {
                 MemberMatching(
                     targetMember = targetMember,
                     mbtiChemistry = MbtiChemistry.of(Mbti.ISTJ, Mbti.ISTJ),
-                    constellationChemistry =
-                        ConstellationChemistry.of(
-                            Constellation.CANCER,
-                            Constellation.CAPRICORN,
+                    bloodTypeChemistry =
+                        BloodTypeChemistry.of(
+                            BloodType.O,
+                            BloodType.A,
                         ),
                     jobMatching = true,
                     matchingClubInfo = listOf(Club.NEXTERS),
