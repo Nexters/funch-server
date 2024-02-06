@@ -22,6 +22,7 @@ object MemberDto {
         val subwayStations: List<String>,
         val mbti: String,
         val memberCode: String,
+        val viewCount: Int,
     ) {
         companion object {
             fun of(member: Member): MemberResponse {
@@ -36,6 +37,7 @@ object MemberDto {
                     subwayStations = member.subwayStations.map { it.name },
                     mbti = member.mbti.name,
                     memberCode = member.code.orEmpty(),
+                    viewCount = member.viewCount,
                 )
             }
         }

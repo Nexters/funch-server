@@ -45,4 +45,10 @@ data class Member(
     fun isSameMember(member: Member): Boolean {
         return id == member.id
     }
+
+    fun increaseViewCount(): Member {
+        return copy(
+            viewCount = viewCount + 1,
+        )
+    }
 }

@@ -40,6 +40,18 @@ class MemberService(
         }
     }
 
+    suspend fun updateTargetMemberAfterMatching(targetMember: Member): Member {
+        return try {
+            memberRepository.save(
+                targetMember.increaseViewCount(),
+            )
+                .awaitFirstOrNull()
+                ?: throw IllegalArgumentException()
+        } catch (e: Exception) {
+            throw IllegalArgumentException("Member didn't saved - member: $targetMember")
+        }
+    }
+
     private suspend fun generateMemberCode(): String {
         val letters = ('A'..'Z').toList()
         val numbers = ('0'..'9').toList()
