@@ -49,7 +49,6 @@ data class Member(
     fun increaseViewCount(): Member {
         return copy(
             viewCount = viewCount + 1,
-            updatedAt = LocalDateTime.now(),
         )
     }
 }
