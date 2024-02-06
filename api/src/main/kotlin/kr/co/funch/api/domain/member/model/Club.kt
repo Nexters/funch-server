@@ -4,5 +4,4 @@ enum class Club {
     NEXTERS,
     SOPT,
     DEPROMEET,
-    SOMA,
 }

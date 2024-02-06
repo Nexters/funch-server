@@ -7,7 +7,6 @@ import kr.co.funch.api.domain.member.model.Club
 import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 class MemberMatchingTest : BehaviorSpec() {
@@ -17,10 +16,8 @@ class MemberMatchingTest : BehaviorSpec() {
             val targetMember =
                 Member(
                     name = "test",
-                    birthDate = LocalDate.now(),
-                    age = 1,
                     bloodType = BloodType.O,
-                    jobGroup = JobGroup.IOS,
+                    jobGroup = JobGroup.DEVELOPER,
                     clubs = listOf(Club.NEXTERS, Club.SOPT),
                     subwayStations = emptyList(),
                     createdAt = LocalDateTime.now(),
