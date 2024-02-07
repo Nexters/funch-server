@@ -19,11 +19,16 @@ object MemberDto {
         val bloodType: String,
         val jobGroup: String,
         val clubs: List<String>,
-        val subwayStations: List<String>,
+        val subwayInfos: List<SubwayInfo>,
         val mbti: String,
         val memberCode: String,
         val viewCount: Int,
     ) {
+        data class SubwayInfo(
+            val name: String,
+            val lines: List<String>,
+        )
+
         companion object {
             fun of(member: Member): MemberResponse {
                 return MemberResponse(
@@ -34,7 +39,10 @@ object MemberDto {
                     bloodType = member.bloodType.name,
                     jobGroup = member.jobGroup.koreanName,
                     clubs = member.clubs.map { it.name },
-                    subwayStations = member.subwayStations.map { it.name },
+                    subwayInfos =
+                        member.subwayStations.map { station ->
+                            SubwayInfo(station.name, station.lines.map { it.name })
+                        },
                     mbti = member.mbti.name,
                     memberCode = member.code.orEmpty(),
                     viewCount = member.viewCount,
