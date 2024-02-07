@@ -24,7 +24,6 @@ object MemberDto {
         val memberCode: String,
         val viewCount: Int,
     ) {
-
         data class SubwayInfo(
             val name: String,
             val lines: List<String>,
@@ -40,9 +39,10 @@ object MemberDto {
                     bloodType = member.bloodType.name,
                     jobGroup = member.jobGroup.koreanName,
                     clubs = member.clubs.map { it.name },
-                    subwayInfos = member.subwayStations.map { station ->
-                        SubwayInfo(station.name, station.lines.map { it.name })
-                    },
+                    subwayInfos =
+                        member.subwayStations.map { station ->
+                            SubwayInfo(station.name, station.lines.map { it.name })
+                        },
                     mbti = member.mbti.name,
                     memberCode = member.code.orEmpty(),
                     viewCount = member.viewCount,
