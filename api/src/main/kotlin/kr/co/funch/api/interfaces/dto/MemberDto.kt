@@ -6,16 +6,12 @@ import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.Period
 
 object MemberDto {
     data class MemberResponse(
         val id: String,
         val name: String,
-        val birth: LocalDate,
-        val age: Int,
         val bloodType: String,
         val jobGroup: String,
         val clubs: List<String>,
@@ -34,8 +30,6 @@ object MemberDto {
                 return MemberResponse(
                     id = member.id.toString(),
                     name = member.name,
-                    birth = member.birthDate,
-                    age = member.age,
                     bloodType = member.bloodType.name,
                     jobGroup = member.jobGroup.koreanName,
                     clubs = member.clubs.map { it.name },
@@ -53,7 +47,6 @@ object MemberDto {
 
     data class MemberCreateRequest(
         val name: String,
-        val birthDate: LocalDate,
         val jobGroup: String,
         val clubs: List<String>,
         val bloodType: String,
@@ -65,8 +58,6 @@ object MemberDto {
             return Member(
                 id = ObjectId(),
                 name = name,
-                birthDate = birthDate,
-                age = Period.between(birthDate, LocalDate.now()).years,
                 bloodType = BloodType.valueOf(bloodType.uppercase()),
                 jobGroup = JobGroup.valueOf(jobGroup.uppercase()),
                 clubs = clubs.map { Club.valueOf(it.uppercase()) },

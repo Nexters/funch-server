@@ -9,7 +9,6 @@ import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 import org.bson.types.ObjectId
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 class MemberServiceTest : BehaviorSpec() {
@@ -27,11 +26,9 @@ class MemberServiceTest : BehaviorSpec() {
                     name = "test",
                     deviceNumber = "test",
                     mbti = Mbti.ENFJ,
-                    jobGroup = JobGroup.FRONTEND,
+                    jobGroup = JobGroup.DEVELOPER,
                     clubs = emptyList(),
                     subwayStations = emptyList(),
-                    birthDate = LocalDate.now(),
-                    age = 23,
                     bloodType = BloodType.A,
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.now(),
