@@ -4,7 +4,7 @@ import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
-@Document
+@Document(collection = "SubwayStation")
 data class SubwayStation(
     @Id
     val id: ObjectId? = null,
