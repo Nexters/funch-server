@@ -12,7 +12,7 @@ data class SubwayInfo(
                 name = subwayStation.name,
                 lines =
                     subwayStation.lines
-                        .map { it.name }
+                        .map { SubwayStation.SubwayLine.valueOf(it).name } // 나중에 한글이름으로 바꿀 예정
                         .toList(),
             )
         }

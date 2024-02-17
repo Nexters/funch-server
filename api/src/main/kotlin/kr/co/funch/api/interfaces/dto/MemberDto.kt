@@ -5,6 +5,7 @@ import kr.co.funch.api.domain.member.model.Club
 import kr.co.funch.api.domain.member.model.JobGroup
 import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
+import kr.co.funch.api.domain.member.model.SubwayStation
 import org.bson.types.ObjectId
 import java.time.LocalDateTime
 
@@ -35,7 +36,7 @@ object MemberDto {
                     clubs = member.clubs.map { it.name },
                     subwayInfos =
                         member.subwayStations.map { station ->
-                            SubwayInfo(station.name, station.lines.map { it.name })
+                            SubwayInfo(station.name, station.lines.map { SubwayStation.SubwayLine.valueOf(it).name })
                         },
                     mbti = member.mbti.name,
                     memberCode = member.code.orEmpty(),
