@@ -1,5 +1,7 @@
 package kr.co.funch.api.domain.member.model
 
+import com.fasterxml.jackson.annotation.JsonCreator
+
 enum class Mbti(val additionalInfo: String) {
     ENFJ("사심없는 따뜻함을 가진 인자한 지도자 타입"),
     ENFP("감당불가 친화력을 가진 인간 리트리버 타입"),
@@ -17,4 +19,13 @@ enum class Mbti(val additionalInfo: String) {
     ISFP("따뜻한 감성을 가진 프로취존러 타입"),
     ISTJ("한번 시작한 일은 끝내는 불도저 타입"),
     ISTP("재주가 많지만 시작이 힘든 귀차니스트"),
+    ;
+
+    companion object {
+        @JvmStatic
+        @JsonCreator
+        fun from(value: String): Mbti {
+            return Mbti.valueOf(value.uppercase())
+        }
+    }
 }
