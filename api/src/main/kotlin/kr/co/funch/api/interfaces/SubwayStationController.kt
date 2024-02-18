@@ -19,7 +19,7 @@ class SubwayStationController(
     suspend fun search(
         @RequestParam query: String,
     ): ApiResponseDto<List<SubwayStationDto.SubwayStationResponse>> {
-        val subwayStations = subwayStationService.findSubwayStationsByName(query)
+        val subwayStations = subwayStationService.findSubwayStationsNameContains(query)
 
         return ApiResponseDto(
             status = "200",

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 class SubwayStationService(
     private val subwayStationRepository: SubwayStationRepository,
 ) {
-    suspend fun findSubwayStationsByName(name: String): List<SubwayStation> {
+    suspend fun findSubwayStationsNameContains(name: String): List<SubwayStation> {
         return subwayStationRepository.searchNameContains(name)
     }
 
