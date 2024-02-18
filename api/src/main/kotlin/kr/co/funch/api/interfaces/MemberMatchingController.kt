@@ -35,7 +35,6 @@ class MemberMatchingController(
                     similarity = memberMatching.calculateSimilarity(),
                     chemistryInfos = memberMatching.getChemistryInfos(),
                     recommendInfos = memberMatching.getRecommendInfos(),
-                    subwayInfos = memberMatching.getSubwayInfos(),
                 ),
         )
     }

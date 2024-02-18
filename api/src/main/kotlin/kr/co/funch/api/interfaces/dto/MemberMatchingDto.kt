@@ -3,7 +3,9 @@ package kr.co.funch.api.interfaces.dto
 import kr.co.funch.api.domain.matching.model.ChemistryInfo
 import kr.co.funch.api.domain.matching.model.RecommendInfo
 import kr.co.funch.api.domain.matching.model.SubwayInfo
+import kr.co.funch.api.domain.member.model.BloodType
 import kr.co.funch.api.domain.member.model.Club
+import kr.co.funch.api.domain.member.model.Mbti
 import kr.co.funch.api.domain.member.model.Member
 
 object MemberMatchingDto {
@@ -17,15 +19,14 @@ object MemberMatchingDto {
         val similarity: Int,
         val chemistryInfos: List<ChemistryInfo>,
         val recommendInfos: List<RecommendInfo>,
-        val subwayInfos: List<SubwayInfo>,
     ) {
         data class TargetProfile(
             val name: String,
             val jobGroup: String,
             val clubs: List<Club>,
-            val mbti: String,
-            val bloodType: String,
-            val subwayNames: List<String>,
+            val mbti: Mbti,
+            val bloodType: BloodType,
+            val subwayInfos: List<SubwayInfo>,
         ) {
             companion object {
                 fun from(member: Member): TargetProfile {
@@ -33,9 +34,12 @@ object MemberMatchingDto {
                         name = member.name,
                         jobGroup = member.jobGroup.koreanName,
                         clubs = member.clubs,
-                        mbti = member.mbti.name,
-                        bloodType = member.bloodType.name,
-                        subwayNames = member.subwayStations.map { it.name }.toList(),
+                        mbti = member.mbti,
+                        bloodType = member.bloodType,
+                        subwayInfos =
+                            member.subwayStations
+                                .map { SubwayInfo.of(it) }
+                                .toList(),
                     )
                 }
             }
