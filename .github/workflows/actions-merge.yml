@@ -3,10 +3,6 @@ name: CI/CD-workflow
 on:
   push:
     branches: ["main", "develop"]
-  pull_request:
-    types:
-      - opened
-      - synchronize
 
 jobs:
   build:
@@ -33,46 +29,42 @@ jobs:
 
       - name: Set up environment variables in application-prod.yaml
         run: |
-          pwd
-          ls -al
           echo "spring:
             data:
               mongodb:
                 username: $MONGODB_USERNAME
                 password: $MONGODB_PASSWORD" >> api/src/main/resources/application-prod.yml
 
-          cat api/src/main/resources/application-prod.yml
+      - name: Build with Gradle
+        run: |
+            chmod +x gradlew
+            ./gradlew jib
 
-#      - name: Build with Gradle
-#        run: |
-#            chmod +x gradlew
-#            ./gradlew jib
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-#  deploy:
-#    needs: build
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Deploy api server
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: ${{ secrets.SERVER_HOST }}
-#          username: ${{ secrets.SERVER_USERNAME }}
-#          password: ${{ secrets.SERVER_PASSWORD }}
-#          port: ${{ secrets.SERVER_PORT }}
-#          script: |
-#            # check for the server connection
-#            echo $HOSTNAME
-#
-#            # stop previous version container
-#            sudo docker stop funch-api
-#            sudo docker rm funch-api
-#
-#            # remove images except the previous version for rollback
-#            sudo docker images | grep funch-api | sort -k2 | awk '{if(NR>1) print $3}' | xargs sudo docker rmi --force
-#            echo $1 | sudo docker images
-#
-#            # deploy container of new version
-#            sudo docker pull ${{ secrets.REGISTRY_USERNAME }}/funch-api:latest
-#            sudo docker run -d --name funch-api -v /service/logs:/logs -e TZ=Asia/Seoul \
-#            --network host ${{ secrets.REGISTRY_USERNAME }}/funch-api:latest
+    steps:
+      - name: Deploy api server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            # check for the server connection
+            echo $HOSTNAME
+
+            # stop previous version container
+            sudo docker stop funch-api
+            sudo docker rm funch-api
+
+            # remove images except the previous version for rollback
+            sudo docker images | grep funch-api | sort -k2 | awk '{if(NR>1) print $3}' | xargs sudo docker rmi --force
+            echo $1 | sudo docker images
+
+            # deploy container of new version
+            sudo docker pull ${{ secrets.REGISTRY_USERNAME }}/funch-api:latest
+            sudo docker run -d --name funch-api -v /service/logs:/logs -e TZ=Asia/Seoul \
+            --network host ${{ secrets.REGISTRY_USERNAME }}/funch-api:latest
