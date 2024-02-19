@@ -35,6 +35,18 @@ data class Member(
         return referenceSubwayStations.intersect(targetSubwayStations).toList()
     }
 
+    fun getMatchedSubwayLine(member: Member): SubwayStation.SubwayLine? {
+        for (reference in this.subwayStations) {
+            for (target in member.subwayStations) {
+                val matchedLine = reference.getFirstMatchedLine(target)
+                if (matchedLine != null) {
+                    return matchedLine
+                }
+            }
+        }
+        return null
+    }
+
     fun hasSameJobGroup(member: Member): Boolean {
         return jobGroup == member.jobGroup
     }
