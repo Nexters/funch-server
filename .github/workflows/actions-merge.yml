@@ -37,9 +37,9 @@ jobs:
             data:
               mongodb:
                 username: $MONGODB_USERNAME
-                password: $MONGODB_PASSWORD" >> src/main/resources/application-prod.yaml
+                password: $MONGODB_PASSWORD" >> src/main/resources/application-prod.yml
 
-          cat src/main/resources/application-prod.yaml
+          cat src/main/resources/application-prod.yml
 
 #      - name: Build with Gradle
 #        run: |
