@@ -11,6 +11,7 @@ data class MemberMatching(
     val jobMatching: Boolean,
     val matchingClubInfo: List<Club>,
     val matchingSubwayInfo: List<SubwayStation>,
+    val matchedSubwayLines: SubwayStation.SubwayLine?,
 ) {
     private var totalItem: Int = 0
     private var matchedItem: Int = 0
@@ -61,5 +62,16 @@ data class MemberMatching(
         if (condition) {
             matchedItem += 1
         }
+    }
+
+    fun getSubwayChemistryInfo(): ChemistryInfo? {
+        if (matchedSubwayLines == null) {
+            return null
+        }
+
+        return ChemistryInfo(
+            title = matchedSubwayLines.name,
+            description = matchedSubwayLines.description,
+        )
     }
 }

@@ -36,6 +36,7 @@ class MemberMatchingController(
                     chemistryInfos = memberMatching.getChemistryInfos(),
                     matchedInfos = memberMatching.getMatchedInfos(),
                     subwayInfos = memberMatching.getSubwayInfos(),
+                    subwayChemistryInfo = memberMatching.getSubwayChemistryInfo(),
                 ),
         )
     }
