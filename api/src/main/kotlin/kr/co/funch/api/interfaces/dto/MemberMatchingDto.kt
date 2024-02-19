@@ -1,7 +1,7 @@
 package kr.co.funch.api.interfaces.dto
 
 import kr.co.funch.api.domain.matching.model.ChemistryInfo
-import kr.co.funch.api.domain.matching.model.RecommendInfo
+import kr.co.funch.api.domain.matching.model.MatchedInfo
 import kr.co.funch.api.domain.matching.model.SubwayInfo
 import kr.co.funch.api.domain.member.model.BloodType
 import kr.co.funch.api.domain.member.model.Club
@@ -18,7 +18,9 @@ object MemberMatchingDto {
         val profile: TargetProfile,
         val similarity: Int,
         val chemistryInfos: List<ChemistryInfo>,
-        val recommendInfos: List<RecommendInfo>,
+        val matchedInfos: List<MatchedInfo>,
+        val subwayInfos: List<SubwayInfo>,
+        val subwayChemistryInfo: ChemistryInfo?,
     ) {
         data class TargetProfile(
             val name: String,

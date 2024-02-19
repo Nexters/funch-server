@@ -34,7 +34,9 @@ class MemberMatchingController(
                     profile = MemberMatchingDto.MatchingResponseDto.TargetProfile.from(memberMatching.targetMember),
                     similarity = memberMatching.calculateSimilarity(),
                     chemistryInfos = memberMatching.getChemistryInfos(),
-                    recommendInfos = memberMatching.getRecommendInfos(),
+                    matchedInfos = memberMatching.getMatchedInfos(),
+                    subwayInfos = memberMatching.getSubwayInfos(),
+                    subwayChemistryInfo = memberMatching.getSubwayChemistryInfo(),
                 ),
         )
     }
