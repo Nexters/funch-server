@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service
 @Service
 class MemberService(
     private val memberRepository: MemberRepository,
+    private val subwayStationService: SubwayStationService,
 ) {
     suspend fun findMember(id: String): Member {
         return memberRepository.findMemberById(ObjectId(id))
@@ -26,11 +27,16 @@ class MemberService(
 
     suspend fun createMember(
         member: Member,
-        subwayStationIds: List<String>,
+        subwayStationNames: List<String>,
     ): Member {
+        val subwayStations = subwayStationService.findSubwayStationsByNames(subwayStationNames)
+
         return try {
             memberRepository.save(
-                member.copy(code = generateMemberCode()),
+                member.copy(
+                    code = generateMemberCode(),
+                    subwayStations = subwayStations,
+                ),
             )
                 .awaitFirstOrNull()
                 ?: throw IllegalArgumentException()

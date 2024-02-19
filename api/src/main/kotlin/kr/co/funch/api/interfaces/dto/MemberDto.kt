@@ -12,11 +12,11 @@ object MemberDto {
     data class MemberResponse(
         val id: String,
         val name: String,
-        val bloodType: String,
+        val bloodType: BloodType,
         val jobGroup: String,
-        val clubs: List<String>,
+        val clubs: List<Club>,
         val subwayInfos: List<SubwayInfo>,
-        val mbti: String,
+        val mbti: Mbti,
         val memberCode: String,
         val viewCount: Int,
     ) {
@@ -30,14 +30,14 @@ object MemberDto {
                 return MemberResponse(
                     id = member.id.toString(),
                     name = member.name,
-                    bloodType = member.bloodType.name,
+                    bloodType = member.bloodType,
                     jobGroup = member.jobGroup.koreanName,
-                    clubs = member.clubs.map { it.name },
+                    clubs = member.clubs,
                     subwayInfos =
                         member.subwayStations.map { station ->
                             SubwayInfo(station.name, station.lines.map { it.name })
                         },
-                    mbti = member.mbti.name,
+                    mbti = member.mbti,
                     memberCode = member.code.orEmpty(),
                     viewCount = member.viewCount,
                 )
@@ -47,22 +47,22 @@ object MemberDto {
 
     data class MemberCreateRequest(
         val name: String,
-        val jobGroup: String,
-        val clubs: List<String>,
-        val bloodType: String,
+        val jobGroup: JobGroup,
+        val clubs: List<Club>,
+        val bloodType: BloodType,
         val subwayStations: List<String>,
-        val mbti: String,
+        val mbti: Mbti,
         val deviceNumber: String,
     ) {
         fun toDomain(): Member {
             return Member(
                 id = ObjectId(),
                 name = name,
-                bloodType = BloodType.valueOf(bloodType.uppercase()),
-                jobGroup = JobGroup.valueOf(jobGroup.uppercase()),
-                clubs = clubs.map { Club.valueOf(it.uppercase()) },
+                bloodType = bloodType,
+                jobGroup = jobGroup,
+                clubs = clubs,
                 subwayStations = emptyList(),
-                mbti = Mbti.valueOf(mbti.uppercase()),
+                mbti = mbti,
                 deviceNumber = deviceNumber,
                 createdAt = LocalDateTime.now(),
                 updatedAt = LocalDateTime.now(),
