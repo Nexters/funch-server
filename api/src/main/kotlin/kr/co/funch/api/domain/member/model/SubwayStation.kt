@@ -12,6 +12,14 @@ data class SubwayStation(
     val lines: Set<SubwayLine>,
     val location: Location = Location(0.0, 0.0),
 ) {
+    fun getFirstMatchedLine(targetSubwayStations: SubwayStation): SubwayLine? {
+        val matchedLine = this.lines.intersect(targetSubwayStations.lines)
+        if (matchedLine.isEmpty()) {
+            return null
+        }
+        return matchedLine.first()
+    }
+
     data class Location(
         val latitude: Double,
         val longitude: Double,
