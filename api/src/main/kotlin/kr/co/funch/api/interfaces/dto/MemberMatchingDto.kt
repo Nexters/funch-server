@@ -19,7 +19,6 @@ object MemberMatchingDto {
         val similarity: Int,
         val chemistryInfos: List<ChemistryInfo>,
         val matchedInfos: List<MatchedInfo>,
-        val subwayInfos: List<SubwayInfo>,
         val subwayChemistryInfo: ChemistryInfo?,
     ) {
         data class TargetProfile(
