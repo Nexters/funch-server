@@ -9,7 +9,7 @@ data class SubwayStation(
     @Id
     val id: ObjectId? = null,
     val name: String,
-    val lines: List<String>,
+    val lines: Set<SubwayLine>,
     val location: Location = Location(0.0, 0.0),
 ) {
     data class Location(
