@@ -32,6 +32,7 @@ jobs:
 
       - name: Set up environment variables in application-prod.yaml
         run: |
+          pwd
           echo "spring:
             data:
               mongodb:
