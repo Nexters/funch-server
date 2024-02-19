@@ -22,23 +22,23 @@ data class MemberMatching(
         )
     }
 
-    fun getRecommendInfos(): List<RecommendInfo> {
-        val recommendInfos = mutableListOf<RecommendInfo>()
+    fun getMatchedInfos(): List<MatchedInfo> {
+        val matchedInfos = mutableListOf<MatchedInfo>()
         if (mbtiChemistry.isEqualMbti()) {
-            recommendInfos.add(RecommendInfo(targetMember.mbti.name))
+            matchedInfos.add(MatchedInfo(targetMember.mbti.name))
         }
         if (bloodTypeChemistry.isEqualBloodType()) {
-            recommendInfos.add(RecommendInfo("${targetMember.bloodType.name}형"))
+            matchedInfos.add(MatchedInfo("${targetMember.bloodType.name}형"))
         }
         if (jobMatching) {
-            recommendInfos.add(RecommendInfo(targetMember.jobGroup.koreanName))
+            matchedInfos.add(MatchedInfo(targetMember.jobGroup.koreanName))
         }
         matchingClubInfo
-            .forEach { recommendInfos.add(RecommendInfo(it.name)) }
+            .forEach { matchedInfos.add(MatchedInfo(it.name)) }
         matchingSubwayInfo
-            .forEach { recommendInfos.add(RecommendInfo(it.name)) }
+            .forEach { matchedInfos.add(MatchedInfo(it.name)) }
 
-        return recommendInfos.toList()
+        return matchedInfos.toList()
     }
 
     fun getSubwayInfos(): List<SubwayInfo> {
