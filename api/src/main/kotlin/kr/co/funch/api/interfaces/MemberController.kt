@@ -53,7 +53,7 @@ class MemberController(
         val member =
             memberService.createMember(
                 member = memberRequest.toDomain(),
-                subwayStationIds = memberRequest.subwayStations,
+                subwayStationNames = memberRequest.subwayStations,
             )
 
         return ApiResponseDto(

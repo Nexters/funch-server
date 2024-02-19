@@ -14,9 +14,11 @@ import java.time.LocalDateTime
 class MemberServiceTest : BehaviorSpec() {
     init {
         val memberRepository: MemberRepository = mockk()
+        val subwayStationService: SubwayStationService = mockk()
         val sut =
             MemberService(
                 memberRepository = memberRepository,
+                subwayStationService = subwayStationService,
             )
 
         Given("MemberService") {
