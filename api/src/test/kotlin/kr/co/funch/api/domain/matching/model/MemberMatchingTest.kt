@@ -44,6 +44,7 @@ class MemberMatchingTest : BehaviorSpec() {
                     jobMatching = true,
                     matchingClubInfo = listOf(Club.NEXTERS),
                     matchingSubwayInfo = emptyList(),
+                    matchedSubwayLines = null
                 )
 
             When("calculateSimilarity를 하면") {
