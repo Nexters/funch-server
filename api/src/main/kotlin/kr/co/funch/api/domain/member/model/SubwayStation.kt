@@ -9,7 +9,7 @@ data class SubwayStation(
     @Id
     val id: ObjectId? = null,
     val name: String,
-    val lines: Set<SubwayLine>,
+    val lines: Set<String>,
     val location: Location = Location(0.0, 0.0),
 ) {
     fun getFirstMatchedLine(targetSubwayStations: SubwayStation): SubwayLine? {
@@ -17,7 +17,7 @@ data class SubwayStation(
         if (matchedLine.isEmpty()) {
             return null
         }
-        return matchedLine.first()
+        return SubwayLine.valueOf(matchedLine.first())
     }
 
     data class Location(

@@ -6,7 +6,7 @@ object SubwayStationDto {
     data class SubwayStationResponse(
         val id: String,
         val name: String,
-        val lines: List<SubwayStation.SubwayLine>,
+        val lines: List<String>,
         val location: Location,
     ) {
         data class Location(
