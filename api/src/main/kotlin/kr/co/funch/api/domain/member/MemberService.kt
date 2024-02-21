@@ -58,6 +58,17 @@ class MemberService(
         }
     }
 
+    suspend fun deleteMember(id: String) {
+        try {
+            val deleteCount = memberRepository.deleteMemberById(ObjectId(id))
+            require(deleteCount == 1L) {
+                throw IllegalArgumentException()
+            }
+        } catch (e: Exception) {
+            throw IllegalArgumentException("Member delete failed - id: $id")
+        }
+    }
+
     private suspend fun generateMemberCode(): String {
         val letters = ('A'..'Z').toList()
         val numbers = ('0'..'9').toList()

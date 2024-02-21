@@ -19,6 +19,8 @@ interface MemberRepositoryCustom {
     suspend fun findMemberByDeviceNumber(deviceNumber: String): Member?
 
     suspend fun findByCode(code: String): Member?
+
+    suspend fun deleteMemberById(id: ObjectId): Long?
 }
 
 @Repository
@@ -54,5 +56,18 @@ class MemberRepositoryCustomImpl(
 
             mongoOperations.findOne(Query(criteria), Member::class.java)
                 .awaitFirstOrNull()
+        }
+
+    override suspend fun deleteMemberById(id: ObjectId): Long? =
+        withContext(ioDispatcher) {
+            val criteria = Criteria()
+            criteria
+                .and("id").`is`(id)
+
+            val result =
+                mongoOperations.remove(Query(criteria), Member::class.java)
+                    .awaitFirstOrNull()
+
+            result?.deletedCount
         }
 }
