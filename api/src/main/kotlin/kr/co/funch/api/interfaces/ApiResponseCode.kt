@@ -13,5 +13,4 @@ enum class ApiResponseCode(
     FAIL("4000", "실패"),
     MATCHING_PROFILE_NOT_EXIST("4001", "매칭상대 프로필 존재하지 않음"),
     INTERNAL_ERROR("5000", "서버 오류"),
-    ;
 }
