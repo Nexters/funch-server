@@ -49,4 +49,9 @@ class MemberMatchingService(
             matchedSubwayLine,
         )
     }
+
+    suspend fun canMatching(targetMemberCode: String): Boolean {
+        // TODO: 호출 결과가 false이면 예외 발생 -> GlobalExceptionHandler 타도록 수정
+        return memberService.existsMemberByMemberCode(targetMemberCode)
+    }
 }

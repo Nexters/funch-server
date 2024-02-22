@@ -69,6 +69,11 @@ class MemberService(
         }
     }
 
+    suspend fun existsMemberByMemberCode(code: String): Boolean {
+        return memberRepository.existsMemberByCode(code)
+            ?: throw IllegalArgumentException("existsMemberByMemberCode failed - code : $code")
+    }
+
     private suspend fun generateMemberCode(): String {
         val letters = ('A'..'Z').toList()
         val numbers = ('0'..'9').toList()
