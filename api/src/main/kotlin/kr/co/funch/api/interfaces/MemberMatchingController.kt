@@ -56,7 +56,7 @@ class MemberMatchingController(
 
         return ApiResponseDto(
             code = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST,
-            message = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST.message
+            message = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST.message,
         )
     }
 }
