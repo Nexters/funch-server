@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue
 enum class ApiResponseCode(
     @get:JsonValue
     val code: String,
-    val description: String,
+    val message: String,
 ) {
     SUCCESS("1000", "성공"),
     INVALID_INPUT("2000", "입력값 오류"),
