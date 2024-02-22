@@ -3,6 +3,7 @@ package kr.co.funch.api.interfaces
 import com.fasterxml.jackson.annotation.JsonValue
 
 enum class ApiResponseCode(
+    @get:JsonValue
     val code: String,
     val description: String,
 ) {
@@ -13,9 +14,4 @@ enum class ApiResponseCode(
     MATCHING_PROFILE_NOT_EXIST("4001", "매칭상대 프로필 존재하지 않음"),
     INTERNAL_ERROR("5000", "서버 오류"),
     ;
-
-    @JsonValue
-    fun getCode(): String {
-        return code
-    }
 }
