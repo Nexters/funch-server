@@ -9,37 +9,45 @@ data class SubwayStation(
     @Id
     val id: ObjectId? = null,
     val name: String,
-    val lines: List<String>,
+    val lines: Set<String>,
     val location: Location = Location(0.0, 0.0),
 ) {
+    fun getFirstMatchedLine(targetSubwayStations: SubwayStation): SubwayLine? {
+        val matchedLine = this.lines.intersect(targetSubwayStations.lines)
+        if (matchedLine.isEmpty()) {
+            return null
+        }
+        return SubwayLine.valueOf(matchedLine.first())
+    }
+
     data class Location(
         val latitude: Double,
         val longitude: Double,
     )
 
-    enum class SubwayLine {
-        ONE,
-        TWO,
-        THREE,
-        FOUR,
-        FIVE,
-        SIX,
-        SEVEN,
-        EIGHT,
-        NINE,
-        SEOHAE,
-        AIRPORT,
-        GIMPO,
-        UI_SINSEOL,
-        SILLIM,
-        YOUNGIN,
-        UIJEONGBU,
-        BUNDANG,
-        GYEONGCHUN,
-        GYEONGUI,
-        GYEONGGANG,
-        INCHEON,
-        INCHEON_TWO,
-        SINBUNDANG,
+    enum class SubwayLine(val description: String) {
+        ONE("1호선"),
+        TWO("2호선"),
+        THREE("3호선"),
+        FOUR("4호선"),
+        FIVE("5호선"),
+        SIX("6호선"),
+        SEVEN("7호선"),
+        EIGHT("8호선"),
+        NINE("9호선"),
+        SEOHAE("서해선"),
+        AIRPORT("공항철도"),
+        GIMPO("김포골드라인"),
+        UI_SINSEOL("우이신설선"),
+        SILLIM("신림선"),
+        YOUNGIN("에버라인"),
+        UIJEONGBU("의정부선"),
+        BUNDANG("수인분당선"),
+        GYEONGCHUN("경춘선"),
+        GYEONGUI("경의중앙선"),
+        GYEONGGANG("경강선"),
+        INCHEON("인천1호선"),
+        INCHEON_TWO("인천2호선"),
+        SINBUNDANG("신분당선"),
     }
 }

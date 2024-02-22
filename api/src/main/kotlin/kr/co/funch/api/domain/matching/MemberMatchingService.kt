@@ -35,6 +35,7 @@ class MemberMatchingService(
             )
         val matchedClubs = requestMember.getMatchedClubs(targetMember)
         val matchedSubwayStations = requestMember.getMatchedSubwayStations(targetMember)
+        val matchedSubwayLine = requestMember.getMatchedSubwayLine(targetMember)
 
         memberService.updateTargetMemberAfterMatching(targetMember)
 
@@ -45,6 +46,7 @@ class MemberMatchingService(
             requestMember.hasSameJobGroup(targetMember),
             matchedClubs,
             matchedSubwayStations,
+            matchedSubwayLine,
         )
     }
 }

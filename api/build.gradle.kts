@@ -79,9 +79,10 @@ tasks {
                 listOf(
                     "-Dspring.profiles.active=prod",
                 )
-            environment = mapOf(
-                "TZ" to "Asia/Seoul"
-            )
+            environment =
+                mapOf(
+                    "TZ" to "Asia/Seoul",
+                )
         }
     }
 }

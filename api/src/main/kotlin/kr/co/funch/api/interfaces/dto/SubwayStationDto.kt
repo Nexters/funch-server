@@ -6,7 +6,7 @@ object SubwayStationDto {
     data class SubwayStationResponse(
         val id: String,
         val name: String,
-        val lines: List<SubwayStation.SubwayLine>,
+        val lines: List<String>,
         val location: Location,
     ) {
         data class Location(
@@ -19,7 +19,7 @@ object SubwayStationDto {
                 return SubwayStationResponse(
                     id = subwayStation.id.toString(),
                     name = subwayStation.name,
-                    lines = subwayStation.lines.map { SubwayStation.SubwayLine.valueOf(it) },
+                    lines = subwayStation.lines.toList(),
                     location =
                         Location(
                             latitude = subwayStation.location.latitude.toString(),

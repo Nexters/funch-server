@@ -11,6 +11,7 @@ data class MemberMatching(
     val jobMatching: Boolean,
     val matchingClubInfo: List<Club>,
     val matchingSubwayInfo: List<SubwayStation>,
+    val matchedSubwayLines: SubwayStation.SubwayLine?,
 ) {
     private var totalItem: Int = 0
     private var matchedItem: Int = 0
@@ -22,23 +23,23 @@ data class MemberMatching(
         )
     }
 
-    fun getRecommendInfos(): List<RecommendInfo> {
-        val recommendInfos = mutableListOf<RecommendInfo>()
+    fun getMatchedInfos(): List<MatchedInfo> {
+        val matchedInfos = mutableListOf<MatchedInfo>()
         if (mbtiChemistry.isEqualMbti()) {
-            recommendInfos.add(RecommendInfo(targetMember.mbti.name))
+            matchedInfos.add(MatchedInfo(targetMember.mbti.name))
         }
         if (bloodTypeChemistry.isEqualBloodType()) {
-            recommendInfos.add(RecommendInfo("${targetMember.bloodType.name}형"))
+            matchedInfos.add(MatchedInfo("${targetMember.bloodType.name}형"))
         }
         if (jobMatching) {
-            recommendInfos.add(RecommendInfo(targetMember.jobGroup.koreanName))
+            matchedInfos.add(MatchedInfo(targetMember.jobGroup.koreanName))
         }
         matchingClubInfo
-            .forEach { recommendInfos.add(RecommendInfo(it.name)) }
+            .forEach { matchedInfos.add(MatchedInfo(it.name)) }
         matchingSubwayInfo
-            .forEach { recommendInfos.add(RecommendInfo(it.name)) }
+            .forEach { matchedInfos.add(MatchedInfo(it.name)) }
 
-        return recommendInfos.toList()
+        return matchedInfos.toList()
     }
 
     fun getSubwayInfos(): List<SubwayInfo> {
@@ -61,5 +62,16 @@ data class MemberMatching(
         if (condition) {
             matchedItem += 1
         }
+    }
+
+    fun getSubwayChemistryInfo(): ChemistryInfo? {
+        if (matchedSubwayLines == null) {
+            return null
+        }
+
+        return ChemistryInfo(
+            title = matchedSubwayLines.name,
+            description = matchedSubwayLines.description,
+        )
     }
 }
