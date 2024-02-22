@@ -2,6 +2,7 @@ package kr.co.funch.api.interfaces
 
 import io.swagger.v3.oas.annotations.Operation
 import kr.co.funch.api.domain.matching.MemberMatchingService
+import kr.co.funch.api.interfaces.dto.ApiResponseCodeDto
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto
 import org.springframework.http.HttpStatus
@@ -46,15 +47,15 @@ class MemberMatchingController(
     @GetMapping("/{targetMemberCode}")
     suspend fun isPossible(
         @PathVariable targetMemberCode: String,
-    ): ApiResponseDto<Unit> {
+    ): ApiResponseCodeDto<Unit> {
         val canMatching = memberMatchingService.canMatching(targetMemberCode)
 
         // TODO: GlobalExceptionHandler에 위임
         if (canMatching) {
-            return ApiResponseDto()
+            return ApiResponseCodeDto()
         }
 
-        return ApiResponseDto(
+        return ApiResponseCodeDto(
             code = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST,
             message = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST.message,
         )
