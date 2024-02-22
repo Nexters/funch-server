@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation
 import kr.co.funch.api.domain.member.MemberService
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
 import kr.co.funch.api.interfaces.dto.MemberDto
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -60,6 +61,22 @@ class MemberController(
             status = "201",
             message = "CREATED",
             data = MemberDto.MemberResponse.of(member),
+        )
+    }
+
+    @Operation(summary = "멤버 프로필 삭제")
+    @DeleteMapping("/{id}")
+    suspend fun deleteMember(
+        @PathVariable id: String,
+    ): ApiResponseDto<String> {
+        memberService.deleteMember(
+            id = id,
+        )
+
+        return ApiResponseDto(
+            status = "200",
+            message = "OK",
+            data = id,
         )
     }
 }
