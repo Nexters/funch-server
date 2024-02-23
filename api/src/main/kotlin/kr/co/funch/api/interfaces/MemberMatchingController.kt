@@ -1,6 +1,7 @@
 package kr.co.funch.api.interfaces
 
 import io.swagger.v3.oas.annotations.Operation
+import kr.co.funch.api.domain.matching.MatchingRecordService
 import kr.co.funch.api.domain.matching.MemberMatchingService
 import kr.co.funch.api.interfaces.dto.ApiResponseCodeDto
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/matching")
 class MemberMatchingController(
     private val memberMatchingService: MemberMatchingService,
+    private val matchingRecordService: MatchingRecordService,
 ) {
     @Operation(summary = "프로필 매칭")
     @PostMapping
@@ -29,6 +31,8 @@ class MemberMatchingController(
                 matchingDto.targetMemberCode,
             )
 
+        matchingRecordService.upsertMatchingRecord(matchingDto, memberMatching)
+
         return ApiResponseDto(
             status = HttpStatus.OK.value().toString(),
             message = HttpStatus.OK.reasonPhrase,
@@ -40,6 +44,37 @@ class MemberMatchingController(
                     matchedInfos = memberMatching.getMatchedInfos(),
                     subwayChemistryInfo = memberMatching.getSubwayChemistryInfo(),
                 ),
+        )
+    }
+
+    @Operation(summary = "매칭 기록 조회")
+    @GetMapping("/{requestMemberId}/records")
+    suspend fun records(
+        @PathVariable requestMemberId: String?,
+    ): ApiResponseDto<List<MemberMatchingDto.MatchingRecordResponseDto>> {
+        if (requestMemberId.isNullOrBlank()) {
+            return ApiResponseDto(
+                status = HttpStatus.BAD_REQUEST.value().toString(),
+                message = "requestMemberId is required",
+                data = null,
+            )
+        }
+
+        val matchingRecords = matchingRecordService.getMatchingRecords(requestMemberId)
+
+        return ApiResponseDto(
+            status = HttpStatus.OK.value().toString(),
+            message = HttpStatus.OK.reasonPhrase,
+            data =
+                matchingRecords.map {
+                    MemberMatchingDto.MatchingRecordResponseDto(
+                        requestMemberId = it.requestMemberId,
+                        targetMemberCode = it.targetMemberCode,
+                        memberMatching = it.memberMatching,
+                        createdAt = it.createdAt.toString(),
+                        updatedAt = it.updatedAt.toString(),
+                    )
+                },
         )
     }
 

@@ -2,6 +2,7 @@ package kr.co.funch.api.interfaces.dto
 
 import kr.co.funch.api.domain.matching.model.ChemistryInfo
 import kr.co.funch.api.domain.matching.model.MatchedInfo
+import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.domain.matching.model.SubwayInfo
 import kr.co.funch.api.domain.member.model.BloodType
 import kr.co.funch.api.domain.member.model.Club
@@ -46,4 +47,12 @@ object MemberMatchingDto {
             }
         }
     }
+
+    data class MatchingRecordResponseDto(
+        val requestMemberId: String,
+        val targetMemberCode: String,
+        val memberMatching: MemberMatching,
+        val createdAt: String,
+        val updatedAt: String,
+    )
 }
