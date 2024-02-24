@@ -28,7 +28,7 @@ class MemberMatchingController(
         val memberMatching =
             memberMatchingService.getMatchingInfo(
                 matchingDto.requestMemberId,
-                matchingDto.targetMemberCode,
+                matchingDto.targetMemberCode.uppercase(),
             )
 
         matchingRecordService.upsertMatchingRecord(matchingDto, memberMatching)
