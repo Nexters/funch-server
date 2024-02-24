@@ -3,7 +3,6 @@ package kr.co.funch.api.domain.matching
 import kr.co.funch.api.domain.matching.model.MatchingRecord
 import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto.MatchingRequestDto
-import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 import java.time.LocalDateTime
 
