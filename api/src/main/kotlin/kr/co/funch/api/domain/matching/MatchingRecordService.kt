@@ -26,7 +26,7 @@ class MatchingRecordService(
                     memberMatching = memberMatching,
                     updatedAt = LocalDateTime.now(),
                 ),
-            )
+            ).subscribe()
         } ?: run {
             matchingRecordRepository.save(
                 MatchingRecord(
