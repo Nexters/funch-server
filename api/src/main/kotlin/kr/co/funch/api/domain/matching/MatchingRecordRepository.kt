@@ -48,7 +48,9 @@ class MatchingRecordRepositoryCustomImpl(
             criteria
                 .and("requestMemberId").`is`(requestMemberId)
 
-            val query = Query(criteria).with(Sort.by(Sort.Direction.DESC, "updatedAt"))
+            val query = Query(criteria)
+                .with(Sort.by(Sort.Direction.DESC, "updatedAt"))
+                .limit(10)
             mongoOperations.find(query, MatchingRecord::class.java)
                 .collectList().awaitFirstOrNull() ?: emptyList()
         }
