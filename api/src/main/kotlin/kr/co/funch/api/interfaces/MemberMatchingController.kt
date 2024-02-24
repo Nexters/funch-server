@@ -2,9 +2,12 @@ package kr.co.funch.api.interfaces
 
 import io.swagger.v3.oas.annotations.Operation
 import kr.co.funch.api.domain.matching.MemberMatchingService
+import kr.co.funch.api.interfaces.dto.ApiResponseCodeDto
 import kr.co.funch.api.interfaces.dto.ApiResponseDto
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto
 import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -37,6 +40,24 @@ class MemberMatchingController(
                     matchedInfos = memberMatching.getMatchedInfos(),
                     subwayChemistryInfo = memberMatching.getSubwayChemistryInfo(),
                 ),
+        )
+    }
+
+    @Operation(summary = "프로필 매칭 가능 여부 조회")
+    @GetMapping("/{targetMemberCode}")
+    suspend fun isPossible(
+        @PathVariable targetMemberCode: String,
+    ): ApiResponseCodeDto<Unit> {
+        val canMatching = memberMatchingService.canMatching(targetMemberCode)
+
+        // TODO: GlobalExceptionHandler에 위임
+        if (canMatching) {
+            return ApiResponseCodeDto()
+        }
+
+        return ApiResponseCodeDto(
+            code = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST,
+            message = ApiResponseCode.MATCHING_PROFILE_NOT_EXIST.message,
         )
     }
 }

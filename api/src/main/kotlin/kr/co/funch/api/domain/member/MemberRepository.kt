@@ -21,6 +21,8 @@ interface MemberRepositoryCustom {
     suspend fun findByCode(code: String): Member?
 
     suspend fun deleteMemberById(id: ObjectId): Long?
+
+    suspend fun existsMemberByCode(code: String): Boolean?
 }
 
 @Repository
@@ -69,5 +71,15 @@ class MemberRepositoryCustomImpl(
                     .awaitFirstOrNull()
 
             result?.deletedCount
+        }
+
+    override suspend fun existsMemberByCode(code: String): Boolean? =
+        withContext(ioDispatcher) {
+            val criteria = Criteria()
+            criteria
+                .and("code").`is`(code)
+
+            mongoOperations.exists(Query(criteria), Member::class.java)
+                .awaitFirstOrNull()
         }
 }
