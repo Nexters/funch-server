@@ -36,7 +36,7 @@ class MatchingRecordRepositoryCustomImpl(
             val criteria = Criteria()
             criteria
                 .and("requestMemberId").`is`(requestMemberId)
-                .and("targetMemberCode").`is`(targetMemberCode)
+                .and("targetMemberCode").`is`(targetMemberCode).regex(targetMemberCode, "i")
 
             mongoOperations.findOne(Query(criteria), MatchingRecord::class.java)
                 .awaitFirstOrNull()
