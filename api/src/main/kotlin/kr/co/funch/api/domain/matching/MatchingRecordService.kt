@@ -36,7 +36,7 @@ class MatchingRecordService(
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.now(),
                 ),
-            )
+            ).subscribe()
         }
     }
 
