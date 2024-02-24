@@ -1,5 +1,6 @@
 package kr.co.funch.api.domain.matching
 
+import kotlinx.coroutines.reactor.awaitSingle
 import kr.co.funch.api.domain.matching.model.MatchingRecord
 import kr.co.funch.api.domain.matching.model.MemberMatching
 import kr.co.funch.api.interfaces.dto.MemberMatchingDto.MatchingRequestDto
@@ -26,7 +27,7 @@ class MatchingRecordService(
                     memberMatching = memberMatching,
                     updatedAt = LocalDateTime.now(),
                 ),
-            )
+            ).awaitSingle()
         } ?: run {
             matchingRecordRepository.save(
                 MatchingRecord(
@@ -36,7 +37,7 @@ class MatchingRecordService(
                     createdAt = LocalDateTime.now(),
                     updatedAt = LocalDateTime.now(),
                 ),
-            )
+            ).awaitSingle()
         }
     }
 
